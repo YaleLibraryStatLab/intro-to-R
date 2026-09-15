@@ -2,12 +2,9 @@
 
 Learn R by using it to answer a real statistical question.
 
-A three-hour StatLab workshop. By the end you will have read real data,
+A two-hour StatLab workshop. By the end you will have read real data,
 compared two groups, tested the difference, built a p-value by hand, and
 fit a regression — using twenty-three functions.
-
-**The question:** did states that expanded Medicaid in 2014 have lower
-working-age mortality than states that did not?
 
 ## Before the workshop
 
@@ -16,7 +13,7 @@ working-age mortality than states that did not?
 3. Download this repository: green **Code** button above → **Download ZIP**,
    then unzip it. (Or `git clone` it if you use git.)
 
-Nothing else to install. The workshop uses base R only — no packages.
+Nothing else to install. The workshop uses base R only.
 
 ## Getting started
 
@@ -32,7 +29,7 @@ run a line with **Cmd+Enter** (Mac) or **Ctrl+Enter** (Windows).
 
 ## What's in here
 
-### `scripts/` — where you work
+### `scripts/`
 
 | File | |
 |---|---|
@@ -40,7 +37,7 @@ run a line with **Cmd+Enter** (Mac) or **Ctrl+Enter** (Windows).
 | `02-we-do.R` | Work in pairs. Most of the code is written. Eight blanks are yours, and four of them are whole expressions. |
 | `03-they-do.R` | On your own. Eight steps, no code. |
 
-### `scripts/solutions/` — the completed versions
+### `scripts/solutions/`
 
 | File | |
 |---|---|
@@ -72,10 +69,6 @@ builds the deck, and you can ignore it.
 - `?mean` opens R's own help for any function.
 - Your script from today is the best reference you will own. It works, you
   typed it, and you know what every line does.
-
-## Afterwards
-
-Point `01-i-do-solution.R` at your own data. That is the actual goal.
 
 StatLab office hours are free and are the fastest way to get unstuck:
 [library.yale.edu/statlab](https://library.yale.edu/statlab)
