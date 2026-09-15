@@ -1,0 +1,54 @@
+% =====================================================================
+%  The whole-game pipeline, for the "Playing the Ballgame Early" slide.
+%
+%  Build:  ./build.sh          (from this directory)
+%  Output: ballgame-flow.svg   (committed; the deck uses it directly)
+%
+%  Quarto does NOT compile this. The deck renders from the .svg, so
+%  nobody needs LaTeX unless they are changing the diagram itself.
+%
+%  Deliberately unboxed. Boxed and pill variants were tried and both
+%  read heavier without carrying any more meaning -- the stages are a
+%  sequence, not six containers.
+% =====================================================================
+
+\documentclass[tikz,border=3pt]{standalone}
+
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+\usetikzlibrary{arrows.meta, positioning}
+
+% palette, matched to styles.css
+\definecolor{nodetext}{HTML}{14364F}
+\definecolor{arrowgrey}{HTML}{9AA6B0}
+
+\begin{document}
+\begin{tikzpicture}[
+  stage/.style={
+    text=nodetext,
+    font=\bfseries,
+    inner sep=3pt
+  },
+  flow/.style={
+    -{Stealth[length=2.4mm, width=1.8mm]},
+    draw=arrowgrey, line width=1pt,
+    shorten >=1pt, shorten <=1pt
+  },
+  node distance=10mm
+]
+
+\node[stage]             (a) {question};
+\node[stage, right=of a] (b) {data};
+\node[stage, right=of b] (c) {describe};
+\node[stage, right=of c] (d) {visualize};
+\node[stage, right=of d] (e) {model};
+\node[stage, right=of e] (f) {report};
+
+\foreach \from/\to in {a/b, b/c, c/d, d/e, e/f}{
+  \draw[flow] (\from) -- (\to);
+}
+
+\end{tikzpicture}
+\end{document}

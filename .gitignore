@@ -1,0 +1,45 @@
+# Everything needed to run AND edit the workshop is tracked, including the
+# rendered slides and presentation/01-rstats-presentation_files/ (the
+# reveal.js libraries). A fresh clone works with no build step.
+#
+# What follows is only machine-local clutter.
+
+# Claude Code
+.claude/
+
+# R session state
+.Rhistory
+.RData
+.Rdata
+.Ruserdata
+.Rapp.history
+
+# RStudio, if anyone opens this there instead of Positron
+.Rproj.user/
+
+# Editor / IDE workspace settings
+.vscode/
+
+# Written by Rscript when a plot is drawn outside an interactive session
+Rplots.pdf
+
+# Quarto's build cache. The rendered .html and _files/ ARE tracked.
+/.quarto/
+/_site/
+
+# LaTeX intermediates from assets/build.sh. The .tex source and the
+# built .svg are both tracked; these are throwaway.
+assets/*.aux
+assets/*.log
+assets/*.dvi
+assets/*.pdf
+assets/*.out
+assets/*.synctex.gz
+
+# Anything a participant saves while working
+data/my_*.csv
+scripts/my_*.R
+
+# macOS / Windows
+.DS_Store
+Thumbs.db

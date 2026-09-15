@@ -1,0 +1,1135 @@
+---
+title: "Doing Statistics in R"
+subtitle: "StatLab Workshop 01: Introduction to R"
+format:
+  revealjs:
+    theme: default
+    slide-number: true
+    preview-links: auto
+    css: styles.css
+    scrollable: true
+    height: 900
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+```{r}
+#| include: false
+knitr::opts_knit$set(root.dir = normalizePath(".."))
+```
+
+```{r}
+#| include: false
+options(width = 78)
+```
+
+## By the end of today
+
+You will have run a complete statistical analysis in R:
+
+::: incremental
+- read real data and looked at it
+- compared two groups and tested the difference
+- visualize and assess patterns in your data
+- fit a regression and read the output
+:::
+
+::: fragment
+It takes twenty-three functions. That is the whole list.
+:::
+
+## What today's workshop is not
+
+::: incremental
+- a crash course in R programming (e.g., objects, functions, loops)
+- a crash course in hypothesis testing
+
+:::
+
+## Playing the Ballgame Early
+
+:::: {.columns}
+
+::: {.column width="60%"}
+![](mets-stadium.jpeg){fig-align="center" width="100%"}
+:::
+
+::: {.column width="40%"}
+
+::: incremental
+- Today's workshop is about learning R by *doing* statistics.
+- Our goal today is to get you comfortable playing a *junior* version of the whole ballgame:
+:::
+
+:::
+
+::::
+
+::: {.fragment .ballgame-flow}
+![](../assets/ballgame-flow.svg){fig-alt="question, data, describe, visualize, model, report"}
+:::
+
+## Today's question
+
+> **Did states that expanded Medicaid in 2014 have lower working-age
+> mortality than states that did not?**
+
+## Today's Ballgame
+
+::: incremental
+Explore: What does mortality look like across states that expanded medicade and those that did not?
+  &nbsp;&nbsp;→ `hist()`, `boxplot()`, group means
+
+Test: Is the difference in these states bigger than chance would produce?
+  &nbsp;&nbsp;→ `t.test(rate ~ expanded)`
+
+Check: does the answer to our second question depend on unreasonable assumptions?
+  &nbsp;&nbsp;→ permutation test
+
+Extend: how can we formally express and model these differences?.
+  &nbsp;&nbsp;→ `lm(rate ~ expanded)`
+:::
+
+## How today works
+
+| | | |
+|---|---|---|
+| **Module 1** | I do | I drive. You type every line with me. |
+| **Module 2** | We do | Pairs. Most of the code is given; you write the four that matter. |
+| **Module 3** | You do | On your own. Eight steps, no code. |
+
+The analysis is the *same shape* all three times. That is deliberate, because by
+the third pass, the shape is yours.
+
+## Two rules
+
+::: incremental
+1. **Type it, don't read it.** Watching me will not put it in your hands.
+2. **Errors are the job, not a failure.** I will make several on purpose.
+   You will make more by accident. This never stops, for anyone.
+:::
+
+::: fragment
+Red sticky = stuck. Green = through. Put the red one up early.
+:::
+
+# Setup
+
+## Getting in
+
+We are using **Positron**, Posit's data-science IDE, the one they are
+building next after RStudio.
+
+::: incremental
+1. **File → Open Folder**, and choose the `01-RStats` folder
+2. Check the top-right corner says **R**. That is your interpreter
+3. Open `scripts/01-i-do.R` from the file list on the left
+4. Run a line with **Cmd+Enter** (Mac) / **Ctrl+Enter** (Windows)
+:::
+
+::: fragment
+Open the **folder**, not a file. Positron makes whatever folder you open
+the working directory, which is the whole reason we will never type a file
+path today.
+:::
+
+## The parts you need today
+
+::: {.ide-map}
+::: {.activity}
+Activity Bar
+:::
+::: {.explorer}
+[Explorer]{.label}
+Your files.
+`scripts/`, `data/`, and the rest of the folder you opened.
+:::
+::: {.key}
+[Editor]{.label}
+Where you **write**.
+
+`scripts/01-i-do.R` opens here.
+
+**Cmd+Enter** sends the current line down to the Console.
+:::
+::: {.key .side}
+[Variables]{.label}
+What currently **exists**. Watch `states` appear here when you make it.
+
+[Plots]{.label}
+Where **pictures** land.
+
+::: {.ide-note}
+Both live in the right sidebar. Click between them.
+:::
+:::
+::: {.key}
+[Console]{.label}
+Where it **runs**. Your code arrives here, and R answers underneath.
+:::
+:::
+
+## Two things Positron gives you
+
+**The Data Explorer.** Click a data frame in **Variables** and you get a
+real spreadsheet view: sort it, filter it, see the type and missingness of
+every column. It is the fastest way to answer "what am I actually
+looking at?"
+
+**One IDE for R and Python.** The interpreter picker in the top-right
+switches languages. Nothing today needs it, but it is why Positron exists.
+
+::: fragment
+Everything else (the Command Palette, extensions, source control) you can
+ignore for three hours. Editor, Console, Variables, Plots. That is the
+whole interface today.
+:::
+
+# Module 1: I do
+
+## Two things to name first
+
+Everything in R is an **object** or a **function**.
+
+::: incremental
+- An **object** is something you made and gave a name to. It sits in the
+  Variables pane until you overwrite it or close R.
+- A **function** does something. You give it a name, a pair of parentheses,
+  and whatever it needs to know inside them.
+:::
+
+::: fragment
+That is the whole vocabulary. Every line today is one or both.
+:::
+
+## Anatomy of a function call
+
+::: {.anatomy .big}
+[read.csv]{.fragment .highlight-current-red fragment-index=1}[(]{.fragment .highlight-current-red fragment-index=2}["data/medicaid.csv"]{.fragment .highlight-current-red fragment-index=3}[,&nbsp;]{.fragment .highlight-current-red fragment-index=5}[row.names&nbsp;=&nbsp;1]{.fragment .highlight-current-red fragment-index=4}[)]{.fragment .highlight-current-red fragment-index=2}
+:::
+
+::: {.fragment fragment-index=1}
+**`read.csv`** is the function name. It says what you want done.
+:::
+
+::: {.fragment fragment-index=2}
+**`( )`** holds everything the function needs to know.
+:::
+
+::: {.fragment fragment-index=3}
+**`"data/medicaid.csv"`** is the first argument: which file to read.
+:::
+
+::: {.fragment fragment-index=4}
+**`row.names = 1`** is a named argument. It changes how the function
+behaves: treat column 1 as row labels, not data. That is why we get 13
+columns from a 14-column file.
+:::
+
+::: {.fragment fragment-index=5}
+**`,`** separates one argument from the next.
+:::
+
+::: {.fragment fragment-index=6}
+Two questions get you through any function: **what do I want R to do**,
+and **what does R need to know to do it?**
+:::
+
+## Step 1: read the data
+
+```{r}
+counties <- read.csv("data/medicaid.csv", row.names = 1)
+```
+
+Nothing printed. That is what success looks like: `<-` stores silently.
+
+::: fragment
+Look at the **Variables** pane. `counties` is now in it.
+:::
+
+## Step 1: three questions
+
+```{r}
+dim(counties)
+```
+
+```{r}
+names(counties)
+```
+
+```{r}
+head(counties, 3)
+```
+
+Ask these of every new dataset: **how big, what columns, what's a row.**
+
+## Step 2: look at the outcome
+
+```{r}
+#| fig-align: center
+#| fig-width: 9
+#| fig-height: 4.5
+hist(counties$crude_rate_20_64)
+```
+
+Never test a variable you have not looked at. Defaults are fine; we are not
+decorating anything yet.
+
+## What is that `$`?
+
+::: {style="font-size: 1.3em; text-align: center; margin: 0.6em 0;"}
+`hist(counties`[`$`]{.pop}`crude_rate_20_64)`
+:::
+
+You have not seen that symbol before. **Don't look it up yet.**
+
+::: fragment
+Use what is already on the screen:
+:::
+
+::: incremental
+- `counties` is the table you just read in
+- `crude_rate_20_64` was in the list `names()` printed
+- so `$` has to join **a table** to **one of its columns**
+:::
+
+::: fragment
+> "`counties` … the `crude_rate_20_64` one."
+:::
+
+## Use the context clues
+
+You just read a symbol you had never seen, correctly, without looking it up.
+
+::: incremental
+- Unfamiliar R code is usually surrounded by things you do recognise: a
+  table you made, a column you have seen, a function whose name says what
+  it does.
+- Read around the gap first. The shape of the line tells you what the
+  missing piece has to be.
+- Then check. Guessing and confirming is faster than looking up cold, and
+  you remember it longer.
+:::
+
+## Reading from the inside out
+
+`hist(counties$crude_rate_20_64)` has two steps, and the inner one happens
+first.
+
+::: incremental
+1. `counties$crude_rate_20_64` pulls the column out. On its own it is a
+   vector: one number per county.
+2. `hist()` draws that vector.
+:::
+
+::: fragment
+> "Take the `crude_rate_20_64` column out of `counties`, and draw a
+> histogram of it."
+:::
+
+## Step 3: expansion is a state policy
+
+Every county in Alabama has the same Medicaid policy as every other county
+in Alabama.
+
+::: fragment
+So the thing that varies is the **state**, not the county. Thirty-nine
+states decided; 2,372 counties did not each decide separately.
+:::
+
+::: fragment
+We need one row per state before we compare anything. That takes three
+moves: keep one year, label each state, then average to the state.
+:::
+
+## Step 3a: keep one year
+
+```{r}
+d2014 <- counties[counties$year == 2014, ]
+dim(d2014)
+```
+
+::: fragment
+Square brackets take a slice: `df[rows, columns]`. We asked for rows where
+`year` is 2014, and left the column slot blank to mean "all of them".
+:::
+
+::: fragment
+`==` asks *is this equal to*. It is a question, not an instruction —
+that is why it is doubled.
+:::
+
+## Reading a line, right to left
+
+::: {style="font-size: 1.05em; text-align: center; margin: 0.5em 0;"}
+`d2014 <- counties[counties$year == 2014, ]`
+:::
+
+Longer lines are still one sentence. Start at the right:
+
+::: incremental
+- `counties[counties$year == 2014, ]` says *from `counties`, keep the rows
+  where `year` is 2014, and every column* …
+- `<-` says *… and store it* …
+- `d2014` says *… as `d2014`.*
+:::
+
+::: fragment
+> "**From `counties`, keep the rows where `year` is 2014 and every column,
+> and store that as `d2014`.**"
+:::
+
+::: fragment
+Whatever is left of the arrow is the name you are giving to the result.
+If you can say a line out loud, you understand it. If you cannot, that is
+where to stop and ask.
+:::
+
+## Step 3b: label each state
+
+```{r}
+d2014$expanded <- ifelse(!is.na(d2014$yaca) & d2014$yaca == 2014, 1, 0)
+table(d2014$expanded)
+```
+
+`ifelse(test, value_if_true, value_if_false)` runs down the whole column.
+
+::: fragment
+Note `$` doing a second job: on the **left** of `<-` it creates a column
+rather than pulling one out.
+:::
+
+## Why the `!is.na()` guard
+
+States that never expanded have `yaca = NA`.
+
+::: fragment
+`NA == 2014` is not `FALSE`. It is `NA` — R is saying "I don't know."
+:::
+
+::: fragment
+Without the guard, every one of those rows comes back `NA`, R gives no
+error, and every mean you compute afterwards is `NA`. `!` means "not" and
+`&` means "and", so the guard reads: *not missing, and equal to 2014.*
+:::
+
+::: fragment
+Silent wrong answers are worse than errors. This is the most common way R
+hands you one.
+:::
+
+## Ask R itself
+
+```r
+?mean
+```
+
+The help page opens in the **Help** pane. The **Usage** line at the top
+lists every argument and its default:
+
+```r
+mean(x, trim = 0, na.rm = FALSE, ...)
+```
+
+::: fragment
+Three questions for the room:
+
+1. How many arguments does `mean()` take?
+2. What does `na.rm` do? (scroll to **Arguments**)
+3. What is it set to if you don't say?
+:::
+
+## `na.rm = FALSE` is the default
+
+R will not skip missing values unless you tell it to.
+
+```r
+mean(counties$median_income)
+#> NA
+```
+
+Fifteen county-year rows are missing an income. One `NA` is enough to make
+the whole answer `NA`.
+
+::: fragment
+```r
+mean(counties$median_income, na.rm = TRUE)
+#> 47.09
+```
+:::
+
+::: fragment
+This is the most common "why is my result `NA`?" in R. When it happens,
+`?` the function and look at what its defaults were doing.
+:::
+
+## Step 3c: average to the state
+
+```{r}
+states_unwt <- aggregate(crude_rate_20_64 ~ state + expanded,
+                         data = d2014, FUN = mean)
+dim(states_unwt)
+```
+
+Read it out loud: *average `crude_rate_20_64`, by state and expansion
+status.*
+
+::: fragment
+`FUN = mean` passes the function itself, with no parentheses. `FUN = mean()`
+would try to run it right now, on nothing.
+:::
+
+## The formula: `y ~ x`
+
+That squiggle is the most reusable thing you will learn today.
+
+::: {style="font-size: 1.5em; text-align: center; margin: 0.5em 0;"}
+`goal( y ~ x , data = d )`
+:::
+
+Read `~` as **"broken down by"**.
+
+| | |
+|---|---|
+| `aggregate(rate ~ expanded, data = states, FUN = mean)` | group means |
+| `boxplot(rate ~ expanded, data = states)` | a picture |
+| `t.test(rate ~ expanded, data = states)` | a test |
+| `lm(rate ~ expanded, data = states)` | a model |
+
+You have used it once. You will use it four more times before lunch.
+
+## That line hid a decision
+
+```{r}
+range(d2014$population_20_64)
+```
+
+::: fragment
+224 people, and 6.3 million. Averaging county **rates** gave Loving County,
+Texas the same weight as Los Angeles.
+:::
+
+## A rate is deaths over people
+
+```{r}
+d2014$deaths <- d2014$crude_rate_20_64 * d2014$population_20_64 / 1e5
+
+state_deaths <- aggregate(deaths ~ state + expanded, data = d2014, FUN = sum)
+state_people <- aggregate(population_20_64 ~ state + expanded, data = d2014, FUN = sum)
+
+states <- state_deaths
+states$crude_rate_20_64 <- state_deaths$deaths /
+                           state_people$population_20_64 * 1e5
+
+states      <- states[order(states$state), ]
+states_unwt <- states_unwt[order(states_unwt$state), ]
+```
+
+Add up the deaths, add up the people, divide once. Same `aggregate()`
+template, `FUN = sum` instead of `mean`.
+
+::: fragment
+Sorting matters: `aggregate()` returns rows grouped, not alphabetically, and
+the same `set.seed()` on a different row order gives a different p-value.
+:::
+
+## Same 39 states, two different answers
+
+```{r}
+gap <- states_unwt$crude_rate_20_64 - states$crude_rate_20_64
+summary(gap)
+
+states$state[abs(gap) > 75]
+```
+
+::: fragment
+Texas is off by more than 130 deaths per 100,000, which is larger than any
+difference we are about to look for. We use the weighted version, because
+it is the state's actual rate.
+:::
+
+## I read these
+
+::: {.readrow .fragment fragment-index=1}
+:::: {.columns}
+::: {.column width="45%"}
+`hist(counties$crude_rate_20_64)`
+:::
+::: {.column width="55%"}
+"Take the `crude_rate_20_64` column out of `counties`, and draw a histogram of it."
+:::
+::::
+:::
+
+::: {.readrow .fragment fragment-index=2}
+:::: {.columns}
+::: {.column width="45%"}
+`d2014 <- counties[counties$year == 2014, ]`
+:::
+::: {.column width="55%"}
+"From `counties`, keep the rows where `year` is 2014 and every column, and store that as `d2014`."
+:::
+::::
+:::
+
+::: {.readrow .fragment fragment-index=3}
+:::: {.columns}
+::: {.column width="45%"}
+`aggregate(crude_rate_20_64 ~ state, data = d2014, FUN = mean)`
+:::
+::: {.column width="55%"}
+"Using the `d2014` data, average `crude_rate_20_64` broken down by `state`."
+:::
+::::
+:::
+
+::: {.readrow .fragment fragment-index=4}
+:::: {.columns}
+::: {.column width="45%"}
+`d2014$deaths <- d2014$crude_rate_20_64 * d2014$population_20_64 / 1e5`
+:::
+::: {.column width="55%"}
+"Multiply each county's rate by its population, divide by 100,000, and store the result as a new column called `deaths`."
+:::
+::::
+:::
+
+## Now you read these
+
+::: {.readrow}
+:::: {.columns}
+::: {.column width="45%"}
+[`table(states$expanded)`]{.fragment fragment-index=1}
+:::
+::: {.column width="55%"}
+[&nbsp;"Take the `expanded` column out of `states`, and count how many of each value there are."]{.fragment fragment-index=2}
+:::
+::::
+:::
+
+::: {.readrow}
+:::: {.columns}
+::: {.column width="45%"}
+[`high_pov <- states[states$poverty_rate > 20, ]`]{.fragment fragment-index=3}
+:::
+::: {.column width="55%"}
+[&nbsp;"From `states`, keep the rows where `poverty_rate` is above 20 and every column, and store that as `high_pov`."]{.fragment fragment-index=4}
+:::
+::::
+:::
+
+::: {.readrow}
+:::: {.columns}
+::: {.column width="45%"}
+[`aggregate(poverty_rate ~ expanded, data = states, FUN = mean)`]{.fragment fragment-index=5}
+:::
+::: {.column width="55%"}
+[&nbsp;"Using the `states` data, average `poverty_rate` broken down by `expanded`."]{.fragment fragment-index=6}
+:::
+::::
+:::
+
+::: {.readrow}
+:::: {.columns}
+::: {.column width="45%"}
+[`states$big <- ifelse(states$poverty_rate > 20, 1, 0)`]{.fragment fragment-index=7}
+:::
+::: {.column width="55%"}
+[&nbsp;"Test whether each state's `poverty_rate` is above 20, give it 1 if yes and 0 if no, and store that as a new column called `big`."]{.fragment fragment-index=8}
+:::
+::::
+:::
+
+::: {.notes}
+Reveal the code, take an answer from the room, then reveal the wording.
+Each one mirrors the example directly above it on the previous slide.
+
+The wording does not have to match mine; the structure does. Listen for
+whether they start at the right and work back, and whether they say
+"store it as" for the arrow.
+:::
+
+## DESCRIBE · Step 4: look at the comparison
+
+```{r}
+#| fig-align: center
+#| fig-width: 9
+#| fig-height: 4
+boxplot(crude_rate_20_64 ~ expanded, data = states)
+```
+
+```{r}
+aggregate(crude_rate_20_64 ~ expanded, data = states, FUN = mean)
+```
+
+## DESCRIBE · Step 4: the estimate, as one number
+
+```{r}
+group_means <- aggregate(crude_rate_20_64 ~ expanded,
+                         data = states, FUN = mean)
+diff_obs <- group_means$crude_rate_20_64[2] - group_means$crude_rate_20_64[1]
+diff_obs
+```
+
+Expansion states averaged about **64 fewer deaths per 100,000**
+working-age people.
+
+Is that more than luck would hand us?
+
+## TEST · Step 5: the test you already know
+
+```{r}
+t.test(crude_rate_20_64 ~ expanded, data = states)
+```
+
+Read all of it. The **interval** tells you the size of the gap the data
+supports. The p-value never does.
+
+## Wait, the sign flipped
+
+We computed `diff_obs = −64`. The interval says **+7 to +121**.
+
+::: fragment
+That is not an error, and it is not you.
+
+`t.test()` subtracts **group 0 − group 1**. We did **group 1 − group 0**.
+Same gap, opposite sign. Check it against the group means at the bottom.
+:::
+
+::: fragment
+This catches everyone once. When a sign looks wrong, find out which way
+round the subtraction went before assuming you broke something.
+:::
+
+::: fragment
+`t = 2.29` and `df = 34.04` you can ignore today.
+:::
+
+## CHECK · Step 6: what does p = 0.13 actually mean?
+
+Most of us walk in carrying this one:
+
+> ~~"p is the probability the result is due to chance."~~
+
+::: fragment
+It's the most common answer, and it has the logic **backwards**. A p-value
+never tells you the probability that chance caused your result.
+:::
+
+::: fragment
+It **assumes chance is all there is**, and then asks:
+
+> if expansion made no difference at all, how often would luck alone hand
+> us a gap as big as ours?
+:::
+
+## CHECK · Step 6: so let's build one
+
+::: incremental
+- The null hypothesis says the labels are meaningless.
+- So let's *make* them meaningless by shuffling which states expanded.
+- Do that a thousand times, and we have a thousand worlds where the policy
+  did nothing.
+- Then just count how many of them beat our real result.
+:::
+
+::: fragment
+We don't have to trust a formula for this. **We can just do it.**
+:::
+
+## Step 6: one fake world
+
+```{r}
+shuffled <- sample(states$expanded)
+
+mean(states$crude_rate_20_64[shuffled == 1]) -
+  mean(states$crude_rate_20_64[shuffled == 0])
+```
+
+Run it again:
+
+```{r}
+shuffled <- sample(states$expanded)
+mean(states$crude_rate_20_64[shuffled == 1]) -
+  mean(states$crude_rate_20_64[shuffled == 0])
+```
+
+That bouncing **is** sampling variation. You are looking straight at it.
+
+## Step 6: a thousand fake worlds
+
+```{r}
+set.seed(2026)
+diffs <- replicate(1000, {
+  shuffled <- sample(states$expanded)
+  mean(states$crude_rate_20_64[shuffled == 1]) -
+    mean(states$crude_rate_20_64[shuffled == 0])
+})
+```
+
+`replicate()` does a thing `n` times and keeps the answers.
+
+One thousand worlds in which the policy did nothing.
+
+## Step 6: and there it is
+
+```{r}
+#| fig-align: center
+#| fig-width: 9
+#| fig-height: 4.2
+hist(diffs)
+abline(v = diff_obs, col = "red", lwd = 2)
+```
+
+```{r}
+mean(abs(diffs) >= abs(diff_obs))
+```
+
+Same `hist()` from step 2, pointed at something new. That number is a
+p-value you built out of `sample()`, `mean()`, and counting.
+
+## That one line does three things
+
+```r
+mean( abs(diffs) >= abs(diff_obs) )
+```
+
+| | |
+|---|---|
+| `abs()` | drops the minus sign, so we count both tails: past −39 and past +39. That is what "two-sided" means, and it is what `t.test()` did. |
+| `>=` | gives a `TRUE`/`FALSE` for each of the 1000 shuffles |
+| `mean()` | of `TRUE`/`FALSE` gives the proportion that are `TRUE`, because `TRUE` counts as 1 |
+
+## Drop the `abs()` and see
+
+```{r}
+mean(diffs >= diff_obs)
+```
+
+::: fragment
+0.93, not something near 0.07. Our difference is negative, so "shuffles at
+least as large as ours" counts almost all of them.
+:::
+
+::: fragment
+R does not warn you. If you want the one-sided p in the direction of the
+effect, it is `mean(diffs <= diff_obs)`. Getting this wrong returns a
+number, not an error.
+:::
+
+## Why it doesn't exactly match `t.test()`
+
+Permutation gave `0.139`. The t-test gave `0.132`.
+
+::: incremental
+- `t.test()` assumes the difference follows a normal distribution. The
+  shuffle does not. It does assume the labels could have been dealt out
+  any other way, which is true here because each state chose once.
+- 1000 shuffles is itself a sample. Change the seed and the second digit
+  moves. Run 10,000 if that matters to you.
+:::
+
+::: fragment
+Two methods, same conclusion: this difference is not distinguishable from
+chance with 39 states.
+:::
+
+## MODEL · Step 7: the same answer, as a regression
+
+```{r}
+m <- lm(crude_rate_20_64 ~ expanded, data = states)
+summary(m)
+```
+
+## MODEL · Step 7: you need two numbers from that
+
+Both on the **`expanded`** row:
+
+| | | |
+|---|---|---|
+| `Estimate` | **−39.18** | our difference in means, exactly |
+| `Pr(>|t|)` | **0.13** | our p-value |
+
+And one bonus, on the row above: `(Intercept)` is the mean of the group
+coded 0 — the same number from step 4. The intercept is just the baseline
+group.
+
+::: fragment
+Everything else (Residuals, Std. Error, R-squared, F-statistic) answers
+questions we haven't asked. You are **not** missing something by skipping
+them today.
+:::
+
+## MODEL · Step 7: look what happened
+
+A difference in means *is* a regression coefficient.
+
+t-test, permutation test, and regression are three ways of asking one
+question, and they agree.
+
+::: fragment
+Once you can read this output you can read most quantitative papers.
+:::
+
+::: fragment
+(`t.test()` uses Welch's correction by default, which is also why its `df` was
+34.04 rather than 37. `var.equal = TRUE` matches `lm()` to the decimal.)
+:::
+
+## Step 8: why we used 39 rows and not 2,372
+
+```{r}
+t.test(crude_rate_20_64 ~ expanded, data = d2014)$p.value
+```
+
+That is the same test, run on the counties.
+
+::: fragment
+`p` is about 6e-17. Overwhelming, and wrong.
+:::
+
+::: fragment
+It believes it has 2,372 independent observations. It has 39. Every county
+in a state shares one policy decision, so those rows repeat 39 pieces of
+information rather than adding 2,372 new ones.
+:::
+
+::: fragment
+When a p-value looks too good, ask how many independent things you actually
+measured. It is usually fewer than the number of rows.
+:::
+
+## That was the whole game
+
+```
+read.csv  dim  names  head  summary     hist  boxplot  abline
+ifelse  is.na  table                    aggregate  mean  median  abs  range
+c  order                                t.test  lm
+sample  set.seed  replicate
+```
+
+Twenty-three functions, and you have a difference in means, a permutation test,
+and a regression, plus the reason to distrust one of them.
+
+## Glossary: the twenty-three functions
+
+:::: {.columns}
+
+::: {.column width="50%"}
+::: {style="font-size: 0.58em;"}
+**Get data, look at it**
+
+| | |
+|---|---|
+| `read.csv()` | read a spreadsheet off disk |
+| `dim()` | how many rows and columns |
+| `names()` | what are the columns called |
+| `head()` | show the first few rows |
+| `summary()` | six-number sketch of a column |
+
+**Pictures**
+
+| | |
+|---|---|
+| `hist()` | distribution of one variable |
+| `boxplot()` | compare groups |
+| `abline()` | add a line to the last plot |
+
+**Build a grouping variable**
+
+| | |
+|---|---|
+| `ifelse()` | test each value, return 1 or 0 |
+| `is.na()` | is this value missing? |
+| `table()` | count how many in each category |
+:::
+:::
+
+::: {.column width="50%"}
+::: {style="font-size: 0.58em;"}
+**Summarise**
+
+| | |
+|---|---|
+| `aggregate()` | apply a function, split by group |
+| `mean()` | average, and on TRUE/FALSE a proportion |
+| `median()` | the middle value |
+| `abs()` | drop the minus sign |
+| `range()` | smallest and largest |
+| `c()` | glue values into one vector |
+| `order()` | the positions that would sort something |
+
+**Test and model**
+
+| | |
+|---|---|
+| `t.test()` | compare two group means |
+| `lm()` | fit a linear model |
+| `summary()` | also prints a model's coefficient table |
+
+**The permutation test**
+
+| | |
+|---|---|
+| `sample()` | shuffle into a random order |
+| `set.seed()` | make the shuffling repeatable |
+| `replicate()` | do something n times, keep the answers |
+:::
+
+::: {style="font-size: 0.72em; margin-top: 0.5em;"}
+Two more appear only in the finish-early extensions: `plot()` and `sum()`.
+:::
+:::
+
+::::
+
+## Glossary: the symbols
+
+::: {style="font-size: 0.66em;"}
+| | | |
+|---|---|---|
+| `#` | everything after it is ignored | `# this is a note` |
+| `<-` | store this as | `x <- 5` |
+| `=` | name an argument, *inside* a function | `data = states` |
+| `()` | run a function; what it needs goes inside | `mean(x)` |
+| `,` | separates one argument from the next | `hist(x, breaks = 20)` |
+| `$` | pull one column out of a data frame | `states$expanded` |
+| `~` | "broken down by" | `rate ~ expanded` |
+| `==` | *is* equal to: a question, not an instruction | `year == 2014` |
+| `>=` `<=` `>` `<` | the usual comparisons | `diffs >= 64` |
+| `!` | not | `!is.na(x)` |
+| `&` | and | `!is.na(x) & x == 2014` |
+| `{ }` | treat several lines as one block | inside `replicate()` |
+:::
+
+::: fragment
+`=` and `<-` both assign, and you will see both. We use `<-` for storing
+things and keep `=` for naming arguments. It makes the two jobs visible.
+:::
+
+## Glossary: square brackets do three jobs
+
+The one that catches everyone. Same symbol, three different meanings:
+
+::: {style="font-size: 0.78em;"}
+| | | |
+|---|---|---|
+| `df[rows, cols]` | slice a **table**, note the comma | `counties[counties$year == 2014, ]` |
+| `x[2]` | pick one element out of a **vector** | `group_means$crude_rate_20_64[2]` |
+| `x[test]` | keep the elements where a test is TRUE | `states$crude_rate_20_64[shuffled == 1]` |
+:::
+
+::: fragment
+If you get `undefined columns selected`, you almost certainly left out the
+comma in the first form.
+:::
+
+# Module 2: We do
+
+## Your turn, with a partner
+
+Open `scripts/02-we-do.R`.
+
+> **Do high-poverty states have higher working-age mortality?**
+
+::: incremental
+- Same eight steps. Same template. New grouping variable.
+- Where you see `______`, fill it in.
+- **One types, one reads the code out loud and predicts** what it will do
+  before you run it. Swap at step 4.
+- Stuck two minutes? Red sticky. Don't burn the module on one blank.
+:::
+
+## What's new in Module 2
+
+Two things you have not seen:
+
+**Making groups from a number.** Expansion came ready-made as 0/1. Poverty
+is continuous, so you split it at the median with `ifelse()`.
+
+**A result that runs off the page.** Your observed difference may fall
+outside the whole null distribution:
+
+```r
+hist(diffs, xlim = range(c(diffs, diff_obs)))
+```
+
+::: fragment
+If `mean(abs(diffs) >= abs(diff_obs))` gives you `0`, that is not p = 0.
+None of 1000 shuffles got that far, so **report p < 0.001**.
+:::
+
+# Module 3: You do
+
+## On your own
+
+Open `scripts/03-they-do.R`.
+
+> **Do states with above-median unemployment have higher working-age
+> mortality?**
+
+::: incremental
+- Eight steps, no code. You have done all eight, twice.
+- Modules 1 and 2 are open in your other tabs. **Use them**.
+- Copying your own working code and changing a variable name is not
+  cheating. It is the job.
+- Step 8 asks you to write the finding in prose. Do that one.
+:::
+
+## If you finish early
+
+::: incremental
+1. Swap the grouping to `median_income`. Does the story change?
+2. You split at the median, which threw information away. Try it
+   continuous: `plot()`, then `abline(lm(...))`. What did the split cost?
+3. Put two predictors in one model. Watch what happens to each.
+4. **Point today's script at your own data.** That is the actual goal, and
+   we are here for another twenty minutes.
+:::
+
+# Where this goes
+
+## What today deliberately left out
+
+::: incremental
+- **`ggplot2`** for nicer plots. Workshop 09.
+- **`dplyr` / the tidyverse** for nicer data wrangling. Workshop 03.
+- **Regression properly**: more than one predictor, and what the
+  assumptions buy you.
+- **Quarto**, turning a script into a paper. Two minutes, right now.
+:::
+
+::: fragment
+None of it is a prerequisite for what you did today. You can start
+Monday with twenty-three functions.
+:::
+
+## Two rules for your own work
+
+**Always open the folder.** Never write `setwd("/Users/you/...")`. It works
+on exactly one computer, and not for long. Open the project folder and every
+path in your script stays relative.
+
+**Never use `rm(list = ls())`.** It does not give you a clean session; it
+doesn't unload packages or reset options. Restart R instead:
+**Cmd/Ctrl+Shift+0**.
+
+::: fragment
+If a script only runs after you have run some *other* thing first, it isn't
+finished.
+:::
+
+## Where to get unstuck
+
+| | |
+|---|---|
+| `?mean` | R's own help, and it is better than it looks |
+| **StatLab office hours** | a human, free, and the fastest option |
+| Error message → search | paste it verbatim, someone has had it |
+
+::: fragment
+Your script from today is the best reference you now own. It works, you
+typed it, and you know what every line does.
+:::
