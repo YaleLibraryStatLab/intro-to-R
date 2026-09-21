@@ -69,10 +69,10 @@ table(states$high_poverty)
 #  >>> SWAP TYPIST HERE <<<
 
 # The y ~ x template. Outcome on the left, groups on the right.
-boxplot(crude_rate_20_64 ~ high_poverty, data = states)
+boxplot(crude_rate_20_64 ~ ______, data = states)
 
 # Group means, same template:
-aggregate(crude_rate_20_64 ~ high_poverty, data = states, FUN = mean)
+aggregate(crude_rate_20_64 ~ ______, data = states, FUN = ______)
 
 # Now pull out the single number: the difference between the two means.
 # Row 2 is the high-poverty group, row 1 is the low. Subtract them.
@@ -86,8 +86,8 @@ diff_obs
 
 # ---- 5. The test ----------------------------------------------------
 
-# Same template again.
-t.test(crude_rate_20_64 ~ high_poverty, data = states)
+# Same template again. This will throw an error, see if you can figure it out.
+t.test(crude_rate_20_64 ~ high_poverty data = states)
 
 # Read the whole output, not just p. What is the confidence interval,
 # and what does it tell you that the p-value does not?
@@ -132,7 +132,7 @@ mean(______________________________)
 
 # ---- 7. The same answer as a regression -----------------------------
 
-m <- lm(crude_rate_20_64 ~ high_poverty, data = states)
+m <- ______(crude_rate_20_64 ~ high_poverty, data = states)
 summary(m)
 
 # Check: does the Estimate on the high_poverty row match your diff_obs

@@ -79,16 +79,16 @@ It takes twenty-three functions. That is the whole list.
 ## Today's Ballgame
 
 ::: incremental
-Explore: What does mortality look like across states that expanded medicade and those that did not?
+**Explore**: What does mortality look like across states that expanded medicade and those that did not?
   &nbsp;&nbsp;→ `hist()`, `boxplot()`, group means
 
-Test: Is the difference in these states bigger than chance would produce?
+**Test**: Is the difference in these states bigger than chance would produce?
   &nbsp;&nbsp;→ `t.test(rate ~ expanded)`
 
-Check: does the answer to our second question depend on unreasonable assumptions?
+**Check**: does the answer to our second question depend on unreasonable assumptions?
   &nbsp;&nbsp;→ permutation test
 
-Extend: how can we formally express and model these differences?.
+**Extend**: how can we formally express and model these differences?.
   &nbsp;&nbsp;→ `lm(rate ~ expanded)`
 :::
 
@@ -107,6 +107,12 @@ the third pass, the shape is yours.
 
 ::: incremental
 1. **Type it, don't read it.** Watching me will not put it in your hands.
+   - When you see a code block like this, type it into your script:
+
+     ```{r}
+     #| eval: false
+     counties <- read.csv("data/medicaid.csv", row.names = 1)
+     ```
 2. **Errors are the job, not a failure.** I will make several on purpose.
    You will make more by accident. This never stops, for anyone.
 :::
