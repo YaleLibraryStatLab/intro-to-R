@@ -391,7 +391,7 @@ summary(m)
 # read this output you can read most quantitative papers.
 #
 # (t.test() uses Welch's correction by default, so the third decimal
-#  differs, and that is also why its df was 34.04 rather than 37.
+#  differs, and that is also why its df was 34.63 rather than 37.
 #  t.test(..., var.equal = TRUE) matches lm() exactly. Try it.)
 
 

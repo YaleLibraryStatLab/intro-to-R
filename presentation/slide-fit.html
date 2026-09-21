@@ -1,0 +1,96 @@
+<!--
+  Fit each slide's body to the space under its title bar.
+
+  custom.scss sizes all slide content in --u, which is 1rem times --fit.
+  This script sets --fit on each slide to the largest value that still
+  fits: dense slides shrink, sparse slides grow, within MIN..MAX. "Fits"
+  means nothing runs past the bottom or right edge and no code block has
+  to scroll to show its contents. The title bar is never scaled.
+
+  Fragments hold their space before they appear, so the fit is measured
+  with every fragment in place and nothing moves as they reveal.
+
+  Injected via `include-after-body`. Skipped in PDF export (?print-pdf),
+  where slides flow onto pages instead.
+-->
+<script>
+  (function () {
+    var MIN = 0.55;  // the smallest a slide body is allowed to get
+    var MAX = 1.5;   // and the largest
+
+    function bodyOf(sec) {
+      return Array.prototype.filter.call(sec.children, function (el) {
+        var t = el.tagName;
+        return t !== "H2" && t !== "ASIDE" && t !== "SCRIPT" && t !== "STYLE" &&
+               !el.classList.contains("notes");
+      });
+    }
+
+    function setFit(sec, z) {
+      sec.style.setProperty("--fit", String(z));
+    }
+
+    // How far (in screen px) the body runs past the slide's bottom or right edge.
+    function overflow(sec, kids) {
+      var r = sec.getBoundingClientRect();
+      var scale = r.height / sec.offsetHeight || 1;
+      var cs = getComputedStyle(sec);
+      var bottom = r.bottom - parseFloat(cs.paddingBottom) * scale;
+      var right = r.right - parseFloat(cs.paddingRight) * scale;
+      var worst = -Infinity;
+      kids.forEach(function (k) {
+        // Every element, not just the top-level boxes: pieces can spill out
+        // of a container without the container itself growing.
+        [k].concat(Array.prototype.slice.call(k.querySelectorAll("*"))).forEach(function (el) {
+          var b = el.getBoundingClientRect();
+          if (b.width || b.height) worst = Math.max(worst, b.bottom - bottom, b.right - right);
+        });
+        // Boxes that scroll instead of growing: code, the anatomy line.
+        // The body element itself can be one (a bare code block).
+        var boxes = Array.prototype.slice.call(k.querySelectorAll("pre, .anatomy"));
+        if (k.matches("pre, .anatomy")) boxes.push(k);
+        boxes.forEach(function (el) {
+          worst = Math.max(worst, el.scrollWidth - el.clientWidth - 1,
+                                  el.scrollHeight - el.clientHeight - 1);
+        });
+      });
+      return worst;
+    }
+
+    function fit(sec) {
+      if (!sec || sec.classList.contains("title-slide")) return;
+      var kids = bodyOf(sec);
+      if (!kids.length) return;
+      // Largest zoom that fits. Text rewraps as it scales, so search for
+      // it rather than dividing heights.
+      sec.classList.add("fitting");  // no transitions while measuring
+      var lo = MIN, hi = MAX;
+      setFit(sec, MAX);
+      if (overflow(sec, kids) > 0.5) {
+        for (var i = 0; i < 8; i++) {
+          var mid = (lo + hi) / 2;
+          setFit(sec, mid);
+          if (overflow(sec, kids) <= 0.5) lo = mid; else hi = mid;
+        }
+        setFit(sec, lo);
+      }
+      sec.classList.remove("fitting");
+    }
+
+    function fitCurrent() {
+      var sec = Reveal.getCurrentSlide();
+      fit(sec);
+      // Figures can finish loading after the slide appears; refit then.
+      if (sec) sec.querySelectorAll("img").forEach(function (img) {
+        if (!img.complete) img.addEventListener("load", function () { fit(sec); }, { once: true });
+      });
+    }
+
+    if (/print-pdf/.test(window.location.search)) return;
+    if (window.Reveal && Reveal.on) {
+      Reveal.on("ready", fitCurrent);
+      Reveal.on("slidechanged", fitCurrent);
+      Reveal.on("resize", fitCurrent);
+    }
+  })();
+</script>

@@ -95,7 +95,7 @@ summary(m)
 #    association.
 #
 # c) Poorer states were less likely to expand Medicaid. Poverty also
-#    raises mortality. So some of the -64 we attributed to expansion is
+#    raises mortality. So some of the -39 we attributed to expansion is
 #    really poverty doing the work in the other direction -- a
 #    confounder. That is the motivation for putting both variables in
 #    one model, which is where a regression workshop picks up:

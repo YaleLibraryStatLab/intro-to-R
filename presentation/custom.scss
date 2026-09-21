@@ -33,14 +33,38 @@ $code-block-color: $statprimary;
 
 /*-- scss:rules --*/
 
-// ---- slide frame: title bar on top, body centered below it -----------
+// ---- per-slide content unit -------------------------------------------
+
+// Text, code, tables and the spacing between them are sized in --u: 1rem
+// times --fit, which slide-fit.html sets on each slide so its body fills
+// the space under the title bar. The frame (padding, title bar, footer,
+// running title) stays in plain rem and never changes size.
+@function u($x) {
+  @return calc(#{$x} * var(--u));
+}
+
+.reveal .slides section {
+  --u: calc(1rem * var(--fit, 1));
+  font-size: var(--u);
+}
+
+// ---- type scale --------------------------------------------------------
+
+// Every size is a multiple of rem (directly, or through --u), so this one
+// number sets the base scale: ~24px body text on the 1050x700 slide.
+// slide-fit.html then grows or shrinks each slide's body from there.
+html {
+  font-size: 24px;
+}
+
+// ---- slide frame: title bar on top, body top-aligned below it --------
 
 .reveal .slides section {
   --pad-x: 1.6rem;
-  --gap-below-bar: 1.05rem;
+  --gap-below-bar: 0.9rem;
   height: 100%;
   box-sizing: border-box;
-  padding: 0 var(--pad-x) 2.5rem;
+  padding: 0 var(--pad-x) 1.2rem;
   text-align: left;
 }
 
@@ -54,12 +78,24 @@ $code-block-color: $statprimary;
   padding-top: 1.4rem;
 }
 
+// Content sits directly under the title bar. (Centering it vertically
+// left a band of empty space under the bar on every short slide.)
 .reveal .slides section > h2 + * {
-  margin-top: auto !important;
+  margin-top: 0 !important;
 }
 
-.reveal .slides section > *:last-child {
-  margin-bottom: auto !important;
+// Content keeps its natural height. Flexbox would otherwise squeeze any
+// scrolling box (code, the anatomy line) to fit, even down to nothing;
+// fitting the slide is slide-fit.html's job.
+.reveal .slides section > * {
+  flex-shrink: 0;
+}
+
+// While slide-fit.html measures, sizes must change instantly: reveal's
+// fragment transitions would otherwise still be easing to the old size.
+.reveal .slides section.fitting,
+.reveal .slides section.fitting * {
+  transition: none !important;
 }
 
 .reveal .slides section > aside,
@@ -81,7 +117,7 @@ $code-block-color: $statprimary;
 .reveal .slides section > h2 {
   font-family: $stat-serif;
   font-weight: 700;
-  font-size: 1.95rem !important;
+  font-size: 1.45rem !important;
   line-height: 1.3;
   color: #fff;
   background: $statprimary;
@@ -102,7 +138,7 @@ $code-block-color: $statprimary;
 .reveal .slides section > h3 {
   font-family: $stat-serif;
   font-weight: 700;
-  font-size: 1.85rem;
+  font-size: u(2.1);
   color: $statprimary;
   margin: 0 0 .8rem;
 }
@@ -110,7 +146,7 @@ $code-block-color: $statprimary;
 .reveal .slides section > h4 {
   font-family: $stat-serif;
   font-weight: 700;
-  font-size: 1.45rem;
+  font-size: u(1.45);
   color: $statprimary;
   margin: 0 0 .6rem;
 }
@@ -133,19 +169,19 @@ $code-block-color: $statprimary;
 }
 
 .reveal .slides section.centered > h3 {
-  font-size: 2.1rem;
+  font-size: u(2.1);
   margin-bottom: .6rem;
 }
 
 .reveal .slides section.centered p {
-  font-size: 1.3rem;
+  font-size: u(1.3);
 }
 
 // ---- body text and lists ----------------------------------------------
 
 .reveal p,
 .reveal li {
-  font-size: 1.02rem;
+  font-size: u(1.02);
   line-height: 1.45;
 }
 
@@ -267,7 +303,7 @@ body:has(.reveal > .slides > section:first-child.present) .running-title {
   border: none !important;
   border-left: none !important;
   border-radius: 0;
-  margin: .55rem 0;
+  margin: u(.55) 0;
   box-shadow: none;
   background: transparent;
 }
@@ -294,7 +330,7 @@ body:has(.reveal > .slides > section:first-child.present) .running-title {
 .reveal div.callout .callout-title strong,
 .reveal div.callout .callout-title em {
   margin: 0;
-  font-size: .92rem;
+  font-size: u(.92);
   color: #fff !important;
   font-weight: 700;
 }
@@ -306,7 +342,7 @@ body:has(.reveal > .slides > section:first-child.present) .running-title {
 
 .reveal div.callout .callout-content p,
 .reveal div.callout .callout-content li {
-  font-size: .95rem;
+  font-size: u(.95);
   color: $statprimary;
 }
 
@@ -343,14 +379,14 @@ body:has(.reveal > .slides > section:first-child.present) .running-title {
   border: 1px solid rgba($statprimary, .18);
   border-radius: 0;
   background: #fbfbfc;
-  margin: .5rem 0;
+  margin: u(.5) 0;
   max-width: 100%;
   overflow: hidden;
 }
 
 .reveal pre {
   font-family: $stat-mono;
-  font-size: .73rem;
+  font-size: u(.73);
   line-height: 1.35;
   width: 100%;
   box-sizing: border-box;
@@ -360,14 +396,14 @@ body:has(.reveal > .slides > section:first-child.present) .running-title {
   background: transparent;
   padding: .5em .7em;
   margin: 0;
-  max-height: 60vh;
+  // No height cap: slide-fit.html scales the slide so code shows in full.
   overflow: auto;
 }
 
 .reveal pre:not(.sourceCode):not(.cell-output pre) {
   border: 1px solid rgba($statprimary, .18);
   background: #fbfbfc;
-  margin: .5rem 0;
+  margin: u(.5) 0;
 }
 
 .reveal pre code {
@@ -414,9 +450,9 @@ body:has(.reveal > .slides > section:first-child.present) .running-title {
 // ---- tables -----------------------------------------------------------
 
 .reveal table {
-  font-size: .88rem;
+  font-size: u(.88);
   border-collapse: collapse;
-  margin: .5rem 0;
+  margin: u(.5) 0;
   width: 100%;
   table-layout: auto;
 }
@@ -449,24 +485,24 @@ body:has(.reveal > .slides > section:first-child.present) .running-title {
   max-width: 100%;
   max-height: 64vh;
   object-fit: contain;
-  margin: .4rem auto;
+  margin: u(.4) auto;
   display: block;
 }
 
 .reveal figure {
-  margin: .4rem 0;
+  margin: u(.4) 0;
 }
 
 .reveal figcaption {
-  font-size: .6rem;
+  font-size: u(.6);
   color: rgba($statprimary, .6);
   text-align: center;
-  margin-top: .2rem;
+  margin-top: u(.2);
 }
 
 .reveal .columns {
   display: flex;
-  gap: 1.1rem;
+  gap: u(1.1);
   align-items: flex-start;
 }
 
@@ -483,7 +519,7 @@ body:has(.reveal > .slides > section:first-child.present) .running-title {
 .reveal section[data-background-color] h2 {
   background: transparent;
   color: #fff;
-  font-size: 1.3em !important;
+  font-size: 1.45rem !important;
   margin: 0 0 var(--gap-below-bar);
   padding: .1em 0 .35em;
   border-bottom: 2px solid rgba(#fff, .35);
@@ -549,7 +585,7 @@ body.on-dark-slide .running-title {
 
 .reveal .panel-tabset [role=tab] {
   font-family: $stat-serif;
-  font-size: .72rem;
+  font-size: u(.72);
   color: $statprimary;
 }
 

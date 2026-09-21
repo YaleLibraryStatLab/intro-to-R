@@ -95,7 +95,7 @@
     code span.vs { color: #032f62; } /* VerbatimString */
     code span.wa { color: #ff5555; } /* Warning */
   </style>
-  <link rel="stylesheet" href="01-rstats-presentation_files/libs/revealjs/dist/theme/quarto-3ff70bdd36987a86c3dff9574813bf4d.css">
+  <link rel="stylesheet" href="01-rstats-presentation_files/libs/revealjs/dist/theme/quarto-110420a71f2525172655d688adae164d.css">
   <link rel="stylesheet" href="styles.css">
   <link href="01-rstats-presentation_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="01-rstats-presentation_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -233,23 +233,27 @@
   background: transparent;
   color: #2c3e50;
   font-weight: 700;
-  font-size: 1.95rem;
-  line-height: 1.15;
-  margin: 0 0 0.35rem;
+  font-size: 2.3rem;
+  line-height: 1.12;
+  margin: 0 0 0.45rem;
   padding: 0;
   text-align: left;
 }
+/* a rule under the subtitle anchors the block, like the beamer title page */
 .reveal .slides section.title-slide .subtitle {
   color: #2980b9;
   font-weight: 700;
-  font-size: 1.02rem;
+  font-size: 1.25rem;
   line-height: 1.3;
-  margin: 0 0 1.6rem;
+  margin: 0 0 1.1rem;
+  padding-bottom: 1.1rem;
+  border-bottom: 2px solid rgba(44, 62, 80, 0.2);
+  align-self: stretch;
   text-align: left;
 }
 .reveal .slides section.title-slide .title-meta p {
-  margin: 0 0 0.28rem;
-  font-size: 0.76rem;
+  margin: 0 0 0.3rem;
+  font-size: 0.9rem;
   line-height: 1.4;
   color: rgba(44, 62, 80, 0.7);
   text-align: left;
@@ -377,32 +381,6 @@
 </ol>
 <div class="fragment">
 <p>Open the <strong>folder</strong>, not a file. Positron makes whatever folder you open the working directory, which is why every file path we type today is short and the same on every laptop.</p>
-</div>
-</section>
-<section id="the-parts-you-need-today" class="slide level2">
-<h2>The parts you need today</h2>
-<div class="ide-map">
-<div class="activity">
-<p>Activity Bar</p>
-</div>
-<div class="explorer">
-<p><span class="label">Explorer</span> Your files. <code>scripts/</code>, <code>data/</code>, and the rest of the folder you opened.</p>
-</div>
-<div class="key">
-<p><span class="label">Editor</span> Where you <strong>write</strong>.</p>
-<p><code>scripts/01-i-do.R</code> opens here.</p>
-<p><strong>Cmd+Enter</strong> sends the current line down to the Console.</p>
-</div>
-<div class="key side">
-<p><span class="label">Variables</span> What currently <strong>exists</strong>. Watch <code>states</code> appear here when you make it.</p>
-<p><span class="label">Plots</span> Where <strong>pictures</strong> land.</p>
-<div class="ide-note">
-<p>Both live in the right sidebar. Click between them.</p>
-</div>
-</div>
-<div class="key">
-<p><span class="label">Console</span> Where it <strong>runs</strong>. Your code arrives here, and R answers underneath.</p>
-</div>
 </div>
 </section>
 <section id="two-things-positron-gives-you" class="slide level2">
@@ -547,7 +525,7 @@
 </section>
 <section id="what-is-that" class="slide level2">
 <h2>What is that <code>$</code>?</h2>
-<div class="codeline" style="font-size: 1.3rem;">
+<div class="codeline" style="font-size: calc(1.3 * var(--u));">
 <p><code>hist(counties</code><span class="pop"><code>$</code></span><code>crude_rate_20_64)</code></p>
 </div>
 <p>You have not seen that symbol before. <strong>Don’t look it up yet.</strong></p>
@@ -615,7 +593,7 @@
 </section>
 <section id="reading-a-line-right-to-left" class="slide level2">
 <h2>Reading a line, right to left</h2>
-<div class="codeline" style="font-size: 1.1rem;">
+<div class="codeline" style="font-size: calc(1.1 * var(--u));">
 <p><code>d2014 &lt;- counties[counties$year == 2014, ]</code></p>
 </div>
 <p>Longer lines are still one sentence. Start at the right:</p>
@@ -708,7 +686,7 @@
 <section id="the-formula-y-x" class="slide level2">
 <h2>The formula: <code>y ~ x</code></h2>
 <p>That squiggle is the most reusable thing you will learn today.</p>
-<div class="codeline" style="font-size: 1.5rem;">
+<div class="codeline" style="font-size: calc(1.5 * var(--u));">
 <p><code>goal( y ~ x , data = d )</code></p>
 </div>
 <p>Read <code>~</code> as <strong>“broken down by”</strong>.</p>
@@ -899,7 +877,7 @@
 <pre><code>[1] -39.17766</code></pre>
 </div>
 </div>
-<p>Expansion states averaged about <strong>64 fewer deaths per 100,000</strong> working-age people.</p>
+<p>Expansion states averaged about <strong>39 fewer deaths per 100,000</strong> working-age people.</p>
 <p>Is that more than luck would hand us?</p>
 </section>
 <section id="test-step-5-the-test-you-already-know" class="slide level2">
@@ -924,7 +902,7 @@ mean in group 0 mean in group 1
 </section>
 <section id="wait-the-sign-flipped" class="slide level2">
 <h2>Wait, the sign flipped</h2>
-<p>We computed <code>diff_obs = −64</code>. The interval says <strong>+7 to +121</strong>.</p>
+<p>We computed <code>diff_obs = −39</code>. The interval runs <strong>−12 to +91</strong>, centered on <strong>+39</strong>.</p>
 <div class="fragment">
 <p>That is not an error, and it is not you.</p>
 <p><code>t.test()</code> subtracts <strong>group 0 − group 1</strong>. We did <strong>group 1 − group 0</strong>. Same gap, opposite sign. Check it against the group means at the bottom.</p>
@@ -933,7 +911,7 @@ mean in group 0 mean in group 1
 <p>This catches everyone once. When a sign looks wrong, find out which way round the subtraction went before assuming you broke something.</p>
 </div>
 <div class="fragment">
-<p><code>t = 2.29</code> and <code>df = 34.04</code> you can ignore today.</p>
+<p><code>t = 1.54</code> and <code>df = 34.63</code> you can ignore today.</p>
 </div>
 </section>
 <section id="check-step-6-what-does-p-0.13-actually-mean" class="slide level2">
@@ -972,7 +950,7 @@ mean in group 0 mean in group 1
 <span id="cb35-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(states<span class="sc">$</span>crude_rate_20_64[shuffled <span class="sc">==</span> <span class="dv">1</span>]) <span class="sc">-</span></span>
 <span id="cb35-4"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(states<span class="sc">$</span>crude_rate_20_64[shuffled <span class="sc">==</span> <span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -31.18304</code></pre>
+<pre><code>[1] -23.08951</code></pre>
 </div>
 </div>
 <p>Run it again:</p>
@@ -981,7 +959,7 @@ mean in group 0 mean in group 1
 <span id="cb37-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(states<span class="sc">$</span>crude_rate_20_64[shuffled <span class="sc">==</span> <span class="dv">1</span>]) <span class="sc">-</span></span>
 <span id="cb37-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(states<span class="sc">$</span>crude_rate_20_64[shuffled <span class="sc">==</span> <span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 18.58739</code></pre>
+<pre><code>[1] -7.175926</code></pre>
 </div>
 </div>
 <p>That bouncing <strong>is</strong> sampling variation. You are looking straight at it.</p>
@@ -1121,7 +1099,7 @@ F-statistic:  2.38 on 1 and 37 DF,  p-value: 0.1314</code></pre>
 <p>Once you can read this output you can read most quantitative papers.</p>
 </div>
 <div class="fragment">
-<p>(<code>t.test()</code> uses Welch’s correction by default, which is also why its <code>df</code> was 34.04 rather than 37. <code>var.equal = TRUE</code> matches <code>lm()</code> to the decimal.)</p>
+<p>(<code>t.test()</code> uses Welch’s correction by default, which is also why its <code>df</code> was 34.63 rather than 37. <code>var.equal = TRUE</code> matches <code>lm()</code> to the decimal.)</p>
 </div>
 </section>
 <section id="step-8-why-we-used-39-rows-and-not-2372" class="slide level2">
@@ -1145,10 +1123,38 @@ F-statistic:  2.38 on 1 and 37 DF,  p-value: 0.1314</code></pre>
 </section>
 <section id="that-was-the-whole-game" class="slide level2">
 <h2>That was the whole game</h2>
-<pre><code>read.csv  dim  names  head  summary     hist  boxplot  abline
-ifelse  is.na  table                    aggregate  mean  median  abs  range
-c  order                                t.test  lm
-sample  set.seed  replicate</code></pre>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Get data, look at it</strong></td>
+<td><code>read.csv</code> <code>dim</code> <code>names</code> <code>head</code> <code>summary</code></td>
+</tr>
+<tr class="even">
+<td><strong>Pictures</strong></td>
+<td><code>hist</code> <code>boxplot</code> <code>abline</code></td>
+</tr>
+<tr class="odd">
+<td><strong>Build a grouping variable</strong></td>
+<td><code>ifelse</code> <code>is.na</code> <code>table</code></td>
+</tr>
+<tr class="even">
+<td><strong>Summarise</strong></td>
+<td><code>aggregate</code> <code>mean</code> <code>median</code> <code>abs</code> <code>range</code> <code>c</code> <code>order</code></td>
+</tr>
+<tr class="odd">
+<td><strong>Test and model</strong></td>
+<td><code>t.test</code> <code>lm</code></td>
+</tr>
+<tr class="even">
+<td><strong>The permutation test</strong></td>
+<td><code>sample</code> <code>set.seed</code> <code>replicate</code></td>
+</tr>
+</tbody>
+</table>
 <p>Twenty-three functions, and you have a difference in means, a permutation test, and a regression, plus the reason to distrust one of them.</p>
 </section>
 <section id="glossary-the-twenty-three-functions" class="slide level2">
@@ -1344,7 +1350,7 @@ sample  set.seed  replicate</code></pre>
 <tr class="odd">
 <td><code>&gt;=</code> <code>&lt;=</code> <code>&gt;</code> <code>&lt;</code></td>
 <td>the usual comparisons</td>
-<td><code>diffs &gt;= 64</code></td>
+<td><code>diffs &gt;= 39</code></td>
 </tr>
 <tr class="even">
 <td><code>!</code></td>
@@ -1423,7 +1429,7 @@ sample  set.seed  replicate</code></pre>
 <p>Two things you have not seen:</p>
 <p><strong>Making groups from a number.</strong> Expansion came ready-made as 0/1. Poverty is continuous, so you split it at the median with <code>ifelse()</code>.</p>
 <p><strong>A result that runs off the page.</strong> Your observed difference may fall outside the whole null distribution:</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(diffs, <span class="at">xlim =</span> <span class="fu">range</span>(<span class="fu">c</span>(diffs, diff_obs)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(diffs, <span class="at">xlim =</span> <span class="fu">range</span>(<span class="fu">c</span>(diffs, diff_obs)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <p>If <code>mean(abs(diffs) &gt;= abs(diff_obs))</code> gives you <code>0</code>, that is not p = 0. None of 1000 shuffles got that far, so <strong>report p &lt; 0.001</strong>.</p>
 </div>
@@ -1798,6 +1804,102 @@ sample  set.seed  replicate</code></pre>
         } else {
           document.addEventListener("DOMContentLoaded", sync);
           setTimeout(sync, 400);
+        }
+      })();
+    </script>
+    <!--
+      Fit each slide's body to the space under its title bar.
+
+      custom.scss sizes all slide content in --u, which is 1rem times --fit.
+      This script sets --fit on each slide to the largest value that still
+      fits: dense slides shrink, sparse slides grow, within MIN..MAX. "Fits"
+      means nothing runs past the bottom or right edge and no code block has
+      to scroll to show its contents. The title bar is never scaled.
+
+      Fragments hold their space before they appear, so the fit is measured
+      with every fragment in place and nothing moves as they reveal.
+
+      Injected via `include-after-body`. Skipped in PDF export (?print-pdf),
+      where slides flow onto pages instead.
+    -->
+    <script>
+      (function () {
+        var MIN = 0.55;  // the smallest a slide body is allowed to get
+        var MAX = 1.5;   // and the largest
+
+        function bodyOf(sec) {
+          return Array.prototype.filter.call(sec.children, function (el) {
+            var t = el.tagName;
+            return t !== "H2" && t !== "ASIDE" && t !== "SCRIPT" && t !== "STYLE" &&
+                   !el.classList.contains("notes");
+          });
+        }
+
+        function setFit(sec, z) {
+          sec.style.setProperty("--fit", String(z));
+        }
+
+        // How far (in screen px) the body runs past the slide's bottom or right edge.
+        function overflow(sec, kids) {
+          var r = sec.getBoundingClientRect();
+          var scale = r.height / sec.offsetHeight || 1;
+          var cs = getComputedStyle(sec);
+          var bottom = r.bottom - parseFloat(cs.paddingBottom) * scale;
+          var right = r.right - parseFloat(cs.paddingRight) * scale;
+          var worst = -Infinity;
+          kids.forEach(function (k) {
+            // Every element, not just the top-level boxes: pieces can spill out
+            // of a container without the container itself growing.
+            [k].concat(Array.prototype.slice.call(k.querySelectorAll("*"))).forEach(function (el) {
+              var b = el.getBoundingClientRect();
+              if (b.width || b.height) worst = Math.max(worst, b.bottom - bottom, b.right - right);
+            });
+            // Boxes that scroll instead of growing: code, the anatomy line.
+            // The body element itself can be one (a bare code block).
+            var boxes = Array.prototype.slice.call(k.querySelectorAll("pre, .anatomy"));
+            if (k.matches("pre, .anatomy")) boxes.push(k);
+            boxes.forEach(function (el) {
+              worst = Math.max(worst, el.scrollWidth - el.clientWidth - 1,
+                                      el.scrollHeight - el.clientHeight - 1);
+            });
+          });
+          return worst;
+        }
+
+        function fit(sec) {
+          if (!sec || sec.classList.contains("title-slide")) return;
+          var kids = bodyOf(sec);
+          if (!kids.length) return;
+          // Largest zoom that fits. Text rewraps as it scales, so search for
+          // it rather than dividing heights.
+          sec.classList.add("fitting");  // no transitions while measuring
+          var lo = MIN, hi = MAX;
+          setFit(sec, MAX);
+          if (overflow(sec, kids) > 0.5) {
+            for (var i = 0; i < 8; i++) {
+              var mid = (lo + hi) / 2;
+              setFit(sec, mid);
+              if (overflow(sec, kids) <= 0.5) lo = mid; else hi = mid;
+            }
+            setFit(sec, lo);
+          }
+          sec.classList.remove("fitting");
+        }
+
+        function fitCurrent() {
+          var sec = Reveal.getCurrentSlide();
+          fit(sec);
+          // Figures can finish loading after the slide appears; refit then.
+          if (sec) sec.querySelectorAll("img").forEach(function (img) {
+            if (!img.complete) img.addEventListener("load", function () { fit(sec); }, { once: true });
+          });
+        }
+
+        if (/print-pdf/.test(window.location.search)) return;
+        if (window.Reveal && Reveal.on) {
+          Reveal.on("ready", fitCurrent);
+          Reveal.on("slidechanged", fitCurrent);
+          Reveal.on("resize", fitCurrent);
         }
       })();
     </script>
