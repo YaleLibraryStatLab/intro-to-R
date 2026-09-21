@@ -34,7 +34,7 @@ run a line with **Cmd+Enter** (Mac) or **Ctrl+Enter** (Windows).
 | File | |
 |---|---|
 | `01-i-do.R` | **Start here.** Mostly empty: section headings and a note about what to write next. You type along with the instructor. |
-| `02-we-do.R` | Work in pairs. Most of the code is written. Eight blanks are yours, and four of them are whole expressions. |
+| `02-we-do.R` | Work in pairs. Most of the code is written. Twelve blanks are yours, and four of them are whole expressions. |
 | `03-they-do.R` | On your own. Eight steps, no code. |
 
 ### `scripts/solutions/`
