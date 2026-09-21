@@ -1,11 +1,6 @@
-.reveal {
-  font-size: 32px;
-}
-
-.reveal pre code {
-  font-size: 0.65em;
-  max-height: 500px;
-}
+/* Base type, colors, code, and tables come from custom.scss. This file
+   holds only the components specific to this deck, in the same palette:
+   #2c3e50 primary, #2980b9 secondary, #e8f4f8 accent background. */
 
 /* ---- Positron layout diagram ------------------------------------- */
 
@@ -21,11 +16,11 @@
 }
 
 .ide-map > div {
-  border: 2px solid #b9c2cc;
-  border-radius: 6px;
+  border: 2px solid rgba(44, 62, 80, 0.25);
+  border-radius: 0;
   padding: 0.55em 0.7em;
-  background: #f6f8fa;
-  color: #4a5560;
+  background: #fbfbfc;
+  color: rgba(44, 62, 80, 0.7);
 }
 
 .ide-map .label {
@@ -37,11 +32,11 @@
 
 /* the four regions that matter today */
 .ide-map .key {
-  background: #eaf3fb;
-  border-color: #2b7fc4;
-  color: #14364f;
+  background: #e8f4f8;
+  border-color: #2980b9;
+  color: #2c3e50;
 }
-.ide-map .key .label { color: #1b5e8f; }
+.ide-map .key .label { color: #2980b9; }
 
 .ide-map .activity {
   writing-mode: vertical-rl;
@@ -57,15 +52,31 @@
 
 .ide-map code {
   font-size: 0.92em;
-  background: rgba(0,0,0,0.05);
-  padding: 0 0.25em;
-  border-radius: 3px;
 }
 
 .ide-note {
   font-size: 0.78em;
-  color: #5b6670;
+  color: rgba(44, 62, 80, 0.6);
   margin-top: 0.2em;
+}
+
+/* ---- a centered line of code, shown on its own ------------------- */
+/* Set the size per slide: ::: {.codeline style="font-size: 1.3rem;"} */
+
+.reveal .codeline {
+  text-align: center;
+  margin: 0.6em 0;
+}
+
+/* the theme sizes p in rem; let the line take the div's size instead */
+.reveal .codeline p {
+  font-size: inherit;
+}
+
+/* no per-span padding, so a line split into spans reads as one line */
+.reveal .codeline code {
+  padding: 0;
+  border-radius: 0;
 }
 
 /* ---- call out one symbol inside a code line ---------------------- */
@@ -77,16 +88,26 @@
   padding-bottom: 1px;
 }
 
+.reveal .pop code {
+  color: inherit;
+}
+
 /* ---- anatomy-of-a-function diagram ------------------------------- */
 
 .anatomy {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-family: "CMU Typewriter Text", "SF Mono", Menlo, Consolas, monospace;
+  font-size: 1rem;
   text-align: center;
   line-height: 1.5;
   margin: 0.5em 0 0.3em 0;
 }
 
-.anatomy.big { font-size: 1.05em; }
+.anatomy.big { font-size: 1.15rem; }
+
+.reveal .anatomy p {
+  font-size: inherit;
+  line-height: inherit;
+}
 
 /* a long call must never run off the slide */
 .anatomy { white-space: nowrap; overflow-x: auto; }
@@ -99,7 +120,7 @@
 .readrow {
   margin: 0.5em 0;
   padding-bottom: 0.45em;
-  border-bottom: 1px solid #e3e7ea;
+  border-bottom: 1px solid rgba(44, 62, 80, 0.15);
 }
 
 .readrow:last-child { border-bottom: none; }
@@ -108,23 +129,25 @@
 
 .readrow code {
   font-size: 0.78em;
-  background: #f2f5f7;
-  padding: 0.12em 0.3em;
-  border-radius: 4px;
-  color: #14364f;
+}
+
+/* the theme keeps inline code on one line; a long call has to wrap
+   inside its column or it runs into the wording beside it */
+.reveal .readrow .column code {
+  white-space: normal;
 }
 
 /* the plain-English half: quieter, and its inline code shouldn't shout */
 .readrow .column:last-child {
   font-size: 0.84em;
-  color: #3f4a55;
+  color: rgba(44, 62, 80, 0.85);
 }
 
 .readrow .column:last-child code {
   background: none;
   padding: 0;
   font-size: 0.9em;
-  color: #1b5e8f;
+  color: #2980b9;
 }
 
 /* ---- whole-game flow diagram on the ballgame slide --------------- */

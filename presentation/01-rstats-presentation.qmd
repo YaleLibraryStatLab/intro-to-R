@@ -1,14 +1,33 @@
 ---
-title: "Doing Statistics in R"
-subtitle: "StatLab Workshop 01: Introduction to R"
+title: "Introduction to Statistical Programming in R"
+subtitle: "Yale Library StatLab"
+author:
+  - name: "Ted Ellsworth, PhD"
+    affiliations:
+      - name: "Yale Statistical Support Services"
+        url: "https://library.yale.edu/help-and-research-support/research-support/statlab"
+term: "Fall 2026"
 format:
   revealjs:
-    theme: default
-    slide-number: true
-    preview-links: auto
+    theme: custom.scss
     css: styles.css
-    scrollable: true
-    height: 900
+    width: 1050
+    height: 700
+    margin: 0.1
+    center: false
+    slide-number: c/t
+    controls: false
+    progress: true
+    navigation-mode: linear
+    transition: none
+    hash: true
+    highlight-style: github
+    code-line-numbers: false
+    preview-links: auto
+    footer: "Yale Library | StatLab"
+    template-partials:
+      - title-slide.html
+    include-after-body: running-title.html
 execute:
   echo: true
   warning: false
@@ -110,9 +129,13 @@ the third pass, the shape is yours.
    - When you see a code block like this, type it into your script:
 
      ```{r}
-     #| eval: false
-     counties <- read.csv("data/medicaid.csv", row.names = 1)
+     # a comment: R skips this whole line
+     2 + 2   # and everything after a # on a line
      ```
+   - What prints underneath (`[1] 4`) is R's answer. Don't type that.
+   - `#` starts a **comment**. Your scripts are full of
+     them: they are the instructions. Write your code on the blank line
+     below, never after a `#`, or R will skip it.
 2. **Errors are the job, not a failure.** I will make several on purpose.
    You will make more by accident. This never stops, for anyone.
 :::
@@ -121,7 +144,9 @@ the third pass, the shape is yours.
 Red sticky = stuck. Green = through. Put the red one up early.
 :::
 
-# Setup
+##
+
+### Setup
 
 ## Getting in
 
@@ -137,8 +162,8 @@ building next after RStudio.
 
 ::: fragment
 Open the **folder**, not a file. Positron makes whatever folder you open
-the working directory, which is the whole reason we will never type a file
-path today.
+the working directory, which is why every file path we type today is short
+and the same on every laptop.
 :::
 
 ## The parts you need today
@@ -193,7 +218,9 @@ ignore for three hours. Editor, Console, Variables, Plots. That is the
 whole interface today.
 :::
 
-# Module 1: I do
+##
+
+### Module 1: I do
 
 ## Two things to name first
 
@@ -213,7 +240,7 @@ That is the whole vocabulary. Every line today is one or both.
 ## Anatomy of a function call
 
 ::: {.anatomy .big}
-[read.csv]{.fragment .highlight-current-red fragment-index=1}[(]{.fragment .highlight-current-red fragment-index=2}["data/medicaid.csv"]{.fragment .highlight-current-red fragment-index=3}[,&nbsp;]{.fragment .highlight-current-red fragment-index=5}[row.names&nbsp;=&nbsp;1]{.fragment .highlight-current-red fragment-index=4}[)]{.fragment .highlight-current-red fragment-index=2}
+[read.csv]{.fragment .highlight-current-red fragment-index=1}[(]{.fragment .highlight-current-red fragment-index=2}[\"data/medicaid.csv\"]{.fragment .highlight-current-red fragment-index=3}[,&nbsp;]{.fragment .highlight-current-red fragment-index=5}[row.names&nbsp;=&nbsp;1]{.fragment .highlight-current-red fragment-index=4}[)]{.fragment .highlight-current-red fragment-index=2}
 :::
 
 ::: {.fragment fragment-index=1}
@@ -241,6 +268,49 @@ columns from a 14-column file.
 ::: {.fragment fragment-index=6}
 Two questions get you through any function: **what do I want R to do**,
 and **what does R need to know to do it?**
+:::
+
+## Inside the quotes: a path
+
+::: {.anatomy .big}
+[\"]{.fragment .highlight-current-red fragment-index=1}[data/]{.fragment .highlight-current-red fragment-index=2}[medicaid[.csv]{.fragment .highlight-current-red fragment-index=4}]{.fragment .highlight-current-red fragment-index=3}[\"]{.fragment .highlight-current-red fragment-index=1}
+:::
+
+::: {.fragment fragment-index=1}
+**`" "`** make it a **string**: text, taken as-is. Without them, R reads
+`medicaid.csv` as the name of an object, goes looking, and fails.
+:::
+
+::: {.fragment fragment-index=2}
+**`data/`** is a folder. Folder, slash, file: that is a **path**,
+directions to the file, starting from the folder you opened.
+:::
+
+::: {.fragment fragment-index=3}
+**`medicaid.csv`** is the file itself.
+:::
+
+::: {.fragment fragment-index=4}
+**`.csv`** is the **extension**: what kind of file it is. Comma-separated
+values, a table saved as plain text. `read.csv()` reads this kind; an Excel
+`.xlsx` needs a different function. Finder and File Explorer hide
+extensions by default, so you may only see `medicaid` there.
+:::
+
+## Mac vs. Windows
+
+The full path to the same file, on two laptops:
+
+| | |
+|---|---|
+| **Mac** | `/Users/you/01-RStats/data/medicaid.csv` |
+| **Windows** | `C:\Users\you\01-RStats\data\medicaid.csv` |
+
+::: incremental
+- Ours skips all of that. `data/medicaid.csv` starts from the folder you
+  opened, so it is the same on every laptop.
+- In R, always write `/`, even on Windows. R reads a lone `\` as the start
+  of a special character, so `"data\medicaid.csv"` is an error.
 :::
 
 ## Step 1: read the data
@@ -285,7 +355,7 @@ decorating anything yet.
 
 ## What is that `$`?
 
-::: {style="font-size: 1.3em; text-align: center; margin: 0.6em 0;"}
+::: {.codeline style="font-size: 1.3rem;"}
 `hist(counties`[`$`]{.pop}`crude_rate_20_64)`
 :::
 
@@ -369,7 +439,7 @@ that is why it is doubled.
 
 ## Reading a line, right to left
 
-::: {style="font-size: 1.05em; text-align: center; margin: 0.5em 0;"}
+::: {.codeline style="font-size: 1.1rem;"}
 `d2014 <- counties[counties$year == 2014, ]`
 :::
 
@@ -491,7 +561,7 @@ would try to run it right now, on nothing.
 
 That squiggle is the most reusable thing you will learn today.
 
-::: {style="font-size: 1.5em; text-align: center; margin: 0.5em 0;"}
+::: {.codeline style="font-size: 1.5rem;"}
 `goal( y ~ x , data = d )`
 :::
 
@@ -803,7 +873,7 @@ mean( abs(diffs) >= abs(diff_obs) )
 ```
 
 | | |
-|---|---|
+|----|--------------------|
 | `abs()` | drops the minus sign, so we count both tails: past −39 and past +39. That is what "two-sided" means, and it is what `t.test()` did. |
 | `>=` | gives a `TRUE`/`FALSE` for each of the 1000 shuffles |
 | `mean()` | of `TRUE`/`FALSE` gives the proportion that are `TRUE`, because `TRUE` counts as 1 |
@@ -1032,9 +1102,11 @@ If you get `undefined columns selected`, you almost certainly left out the
 comma in the first form.
 :::
 
-# Module 2: We do
+##
 
-## Your turn, with a partner
+### Module 2: We do
+
+## Your turn, with a partner {background-color="#1f4e79"}
 
 Open `scripts/02-we-do.R`.
 
@@ -1067,9 +1139,11 @@ If `mean(abs(diffs) >= abs(diff_obs))` gives you `0`, that is not p = 0.
 None of 1000 shuffles got that far, so **report p < 0.001**.
 :::
 
-# Module 3: You do
+##
 
-## On your own
+### Module 3: You do
+
+## On your own {background-color="#1f4e79"}
 
 Open `scripts/03-they-do.R`.
 
@@ -1095,7 +1169,9 @@ Open `scripts/03-they-do.R`.
    we are here for another twenty minutes.
 :::
 
-# Where this goes
+##
+
+### Where this goes
 
 ## What today deliberately left out
 
@@ -1126,6 +1202,17 @@ doesn't unload packages or reset options. Restart R instead:
 If a script only runs after you have run some *other* thing first, it isn't
 finished.
 :::
+
+## Common errors to watch for as you start
+
+| You see | What it means, and what to check |
+|--------|--------------------|
+| `c(1, "two", 3)` gives `"1" "two" "3"` | A vector holds **one type**. One piece of text turns every value into text. Many functions need a specific type, and a mismatch is behind a lot of errors. Check with `class()`. |
+| `object 'x' not found` | Nothing by that name exists: a typo (`State` is not `state`), or you skipped the line that makes it. Look in the **Variables** pane. |
+| `unexpected symbol`<br>`unexpected ')'` | A typo R can't read, like a missing comma or an extra `)`. R quotes your line up to the point where it got lost. |
+| `+` in the Console, not `>` | The line isn't finished. Every `(` needs a `)`: `ifelse(x, ifelse(z == x, 1, 0), NA` opens two and closes one. Type the missing `)`, press Enter, then fix your script. |
+| `non-numeric argument to binary operator` | Math (`+ - * /`) on something that isn't a number, like `c(1, "two", 3) + 1`. Check `class()`. |
+| `subscript out of bounds` | You asked for a position that isn't there, like `x[[4]]` when `x` has 3 values. Careful: `x[4]` gives no error, just a quiet `NA`. |
 
 ## Where to get unstuck
 

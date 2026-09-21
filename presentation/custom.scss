@@ -1,0 +1,598 @@
+/*-- scss:defaults --*/
+
+// StatLab palette, shared with the beamer template
+$statprimary:    #2c3e50;
+$statsecondary:  #2980b9;
+$statyale:       #00356b;
+$stataccbg:      #e8f4f8;
+$statalert:      #e74c3c;
+$statalertbg:    #fdedec;
+$statdefinition: #e67e22;
+$statdefbg:      #fdf2e9;
+$statexample:    #27ae60;
+$statexbg:       #eafaf1;
+$statproof:      #95a5a6;
+$statproofbg:    #f9f9f9;
+
+$stat-serif: "CMU Serif", "Latin Modern Roman", "EB Garamond", Georgia, "Times New Roman", serif;
+$stat-mono:  "CMU Typewriter Text", "SF Mono", Menlo, Consolas, monospace;
+
+$font-family-sans-serif: $stat-serif;
+$font-family-monospace: $stat-mono;
+$presentation-heading-font: $stat-serif;
+$presentation-font-size-root: 30px;
+
+$body-bg: #ffffff;
+$body-color: $statprimary;
+$link-color: $statsecondary;
+$presentation-heading-color: $statprimary;
+
+$code-block-bg: #ffffff;
+$code-bg: transparent;
+$code-block-color: $statprimary;
+
+/*-- scss:rules --*/
+
+// ---- slide frame: title bar on top, body centered below it -----------
+
+.reveal .slides section {
+  --pad-x: 1.6rem;
+  --gap-below-bar: 1.05rem;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 0 var(--pad-x) 2.5rem;
+  text-align: left;
+}
+
+.reveal .slides section.present {
+  display: flex !important;
+  flex-direction: column;
+}
+
+.reveal .slides section:not(:has(> h2)),
+.reveal .slides section:has(> h2:empty) {
+  padding-top: 1.4rem;
+}
+
+.reveal .slides section > h2 + * {
+  margin-top: auto !important;
+}
+
+.reveal .slides section > *:last-child {
+  margin-bottom: auto !important;
+}
+
+.reveal .slides section > aside,
+.reveal .slides section > .notes {
+  margin: 0;
+}
+
+.reveal {
+  font-family: $stat-serif;
+  color: $statprimary;
+}
+
+.reveal .slides {
+  text-align: left;
+}
+
+// ---- headings ---------------------------------------------------------
+
+.reveal .slides section > h2 {
+  font-family: $stat-serif;
+  font-weight: 700;
+  font-size: 1.95rem !important;
+  line-height: 1.3;
+  color: #fff;
+  background: $statprimary;
+  flex: 0 0 auto;
+  margin: 0 calc(-1 * var(--pad-x)) var(--gap-below-bar);
+  padding: .4em var(--pad-x);
+  box-sizing: border-box;
+  text-transform: none;
+  letter-spacing: 0;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.reveal .slides section > h2:empty {
+  display: none;
+}
+
+.reveal .slides section > h3 {
+  font-family: $stat-serif;
+  font-weight: 700;
+  font-size: 1.85rem;
+  color: $statprimary;
+  margin: 0 0 .8rem;
+}
+
+.reveal .slides section > h4 {
+  font-family: $stat-serif;
+  font-weight: 700;
+  font-size: 1.45rem;
+  color: $statprimary;
+  margin: 0 0 .6rem;
+}
+
+// A slide holding only an h3/h4 is a section divider: center it
+.reveal .slides section:has(> h3, > h4):not(:has(> p, > ul, > ol, > table, > div, > pre)) {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  h3, h4 {
+    text-align: center;
+    margin-bottom: 0;
+  }
+}
+
+.reveal .slides section.centered {
+  align-items: center;
+  text-align: center;
+}
+
+.reveal .slides section.centered > h3 {
+  font-size: 2.1rem;
+  margin-bottom: .6rem;
+}
+
+.reveal .slides section.centered p {
+  font-size: 1.3rem;
+}
+
+// ---- body text and lists ----------------------------------------------
+
+.reveal p,
+.reveal li {
+  font-size: 1.02rem;
+  line-height: 1.45;
+}
+
+.reveal ul,
+.reveal ol {
+  margin-left: 1.1em;
+  margin-bottom: .5em;
+}
+
+.reveal li {
+  margin-bottom: .22em;
+}
+
+.reveal ul {
+  list-style: none;
+}
+
+.reveal ul > li {
+  position: relative;
+}
+
+.reveal ul > li::before {
+  content: "•";
+  color: $statsecondary;
+  position: absolute;
+  left: -0.85em;
+  font-size: .9em;
+}
+
+.reveal ul ul > li::before {
+  content: "◦";
+  color: rgba($statsecondary, .7);
+}
+
+.reveal ul ul ul > li::before {
+  content: "–";
+}
+
+.reveal ol > li::marker {
+  color: $statsecondary;
+  font-weight: 700;
+}
+
+.reveal strong {
+  color: $statprimary;
+  font-weight: 700;
+}
+
+.reveal a {
+  color: $statsecondary;
+  text-decoration: none;
+  border-bottom: 1px solid rgba($statsecondary, .35);
+}
+
+// ---- running title, footer, slide number ------------------------------
+
+// Top-right deck title; the element comes from running-title.html
+.running-title {
+  position: absolute;
+  top: .42rem;
+  right: .85rem;
+  z-index: 6;
+  font-family: $stat-serif;
+  font-size: .62rem;
+  color: rgba($statprimary, .55);
+  pointer-events: none;
+  transition: opacity .2s;
+}
+
+.reveal:has(> .slides > section:first-child.present) ~ .running-title,
+body:has(.reveal > .slides > section:first-child.present) .running-title {
+  opacity: 0;
+}
+
+.reveal .footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: .3rem .85rem .35rem 2.6rem;
+  border-top: 1px solid rgba($statprimary, .25);
+  background: #fff;
+  text-align: left !important;
+  font-family: $stat-serif;
+  font-size: .6rem !important;
+  color: $statyale;
+  z-index: 5;
+}
+
+.reveal .footer p {
+  font-size: .6rem !important;
+  margin: 0;
+  color: $statyale;
+}
+
+.reveal .slide-number {
+  position: fixed !important;
+  right: .85rem !important;
+  bottom: .32rem !important;
+  left: auto !important;
+  top: auto !important;
+  background: transparent !important;
+  font-family: $stat-serif;
+  font-size: .6rem !important;
+  color: rgba($statprimary, .5) !important;
+  z-index: 6 !important;
+}
+
+.reveal .slide-number a {
+  color: rgba($statprimary, .5) !important;
+  border-bottom: none;
+}
+
+// ---- callouts: beamer-style colored title band ------------------------
+
+.reveal div.callout,
+.reveal div.callout.callout-style-default {
+  border: none !important;
+  border-left: none !important;
+  border-radius: 0;
+  margin: .55rem 0;
+  box-shadow: none;
+  background: transparent;
+}
+
+.reveal div.callout > .callout-body {
+  display: block;
+  border: none !important;
+  border-radius: 0;
+  background: transparent;
+}
+
+.reveal div.callout .callout-title {
+  display: flex;
+  align-items: center;
+  gap: .4em;
+  margin: 0;
+  padding: .2em .7em;
+  color: #fff;
+  font-weight: 700;
+  border-radius: 0;
+}
+
+.reveal div.callout .callout-title p,
+.reveal div.callout .callout-title strong,
+.reveal div.callout .callout-title em {
+  margin: 0;
+  font-size: .92rem;
+  color: #fff !important;
+  font-weight: 700;
+}
+
+.reveal div.callout .callout-content {
+  padding: .5em .7em;
+  border-radius: 0;
+}
+
+.reveal div.callout .callout-content p,
+.reveal div.callout .callout-content li {
+  font-size: .95rem;
+  color: $statprimary;
+}
+
+.reveal div.callout .callout-content > :first-child {
+  margin-top: 0;
+}
+
+.reveal div.callout .callout-content > :last-child {
+  margin-bottom: 0;
+}
+
+.reveal div.callout .callout-icon-container {
+  display: none;
+}
+
+@each $type, $title-bg, $body-bg in (
+  note      $statsecondary  $stataccbg,
+  tip       $statexample    $statexbg,
+  important $statalert      $statalertbg,
+  warning   $statdefinition $statdefbg,
+  caution   $statproof      $statproofbg
+) {
+  .reveal div.callout.callout-#{$type} > .callout-body > .callout-title {
+    background: $title-bg !important;
+  }
+  .reveal div.callout.callout-#{$type} > .callout-body > .callout-content {
+    background: $body-bg !important;
+  }
+}
+
+// ---- code -------------------------------------------------------------
+
+.reveal div.sourceCode {
+  border: 1px solid rgba($statprimary, .18);
+  border-radius: 0;
+  background: #fbfbfc;
+  margin: .5rem 0;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.reveal pre {
+  font-family: $stat-mono;
+  font-size: .73rem;
+  line-height: 1.35;
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+  padding: .5em .7em;
+  margin: 0;
+  max-height: 60vh;
+  overflow: auto;
+}
+
+.reveal pre:not(.sourceCode):not(.cell-output pre) {
+  border: 1px solid rgba($statprimary, .18);
+  background: #fbfbfc;
+  margin: .5rem 0;
+}
+
+.reveal pre code {
+  font-family: $stat-mono;
+  background: transparent;
+  padding: 0;
+  max-height: none;
+  overflow: visible;
+  white-space: pre;
+  display: block;
+}
+
+.reveal code {
+  font-family: $stat-mono;
+  font-size: .92em;
+  color: $statprimary;
+  background: rgba($statsecondary, .08);
+  padding: .05em .25em;
+  border-radius: 2px;
+}
+
+.reveal p code:not(.sourceCode),
+.reveal li code:not(.sourceCode),
+.reveal td code:not(.sourceCode),
+.reveal th code:not(.sourceCode) {
+  white-space: nowrap;
+  overflow-wrap: normal;
+  word-break: keep-all;
+}
+
+.reveal div.callout .callout-title code,
+.reveal .slides section > h2 code {
+  background: rgba(#fff, .2);
+  color: #fff;
+  font-size: .9em;
+}
+
+.reveal .cell-output pre,
+.reveal .cell-output div.sourceCode {
+  background: #fff;
+  border: 1px solid rgba($statprimary, .12);
+}
+
+// ---- tables -----------------------------------------------------------
+
+.reveal table {
+  font-size: .88rem;
+  border-collapse: collapse;
+  margin: .5rem 0;
+  width: 100%;
+  table-layout: auto;
+}
+
+.reveal table th {
+  background: $stataccbg;
+  border-bottom: 2px solid $statprimary;
+  padding: .3em .5em;
+  font-weight: 700;
+  text-align: left;
+  color: $statprimary;
+}
+
+.reveal table td {
+  border-bottom: 1px solid rgba($statprimary, .15);
+  padding: .26em .5em;
+  vertical-align: top;
+  overflow-wrap: break-word;
+}
+
+.reveal .slides section > table {
+  width: 100%;
+  max-width: 100%;
+}
+
+// ---- figures and columns ----------------------------------------------
+
+.reveal img,
+.reveal svg {
+  max-width: 100%;
+  max-height: 64vh;
+  object-fit: contain;
+  margin: .4rem auto;
+  display: block;
+}
+
+.reveal figure {
+  margin: .4rem 0;
+}
+
+.reveal figcaption {
+  font-size: .6rem;
+  color: rgba($statprimary, .6);
+  text-align: center;
+  margin-top: .2rem;
+}
+
+.reveal .columns {
+  display: flex;
+  gap: 1.1rem;
+  align-items: flex-start;
+}
+
+.reveal .columns > .column {
+  min-width: 0;
+}
+
+.reveal .columns > .column > :first-child {
+  margin-top: 0;
+}
+
+// ---- dark "your turn" slides: {background-color="#1f4e79"} ------------
+
+.reveal section[data-background-color] h2 {
+  background: transparent;
+  color: #fff;
+  font-size: 1.3em !important;
+  margin: 0 0 var(--gap-below-bar);
+  padding: .1em 0 .35em;
+  border-bottom: 2px solid rgba(#fff, .35);
+}
+
+.reveal section[data-background-color] {
+  padding-top: 1.4rem;
+}
+
+.reveal section[data-background-color],
+.reveal section[data-background-color] p,
+.reveal section[data-background-color] li,
+.reveal section[data-background-color] h3,
+.reveal section[data-background-color] strong {
+  color: #fff;
+}
+
+.reveal section[data-background-color] a {
+  color: #bfe0ff;
+  border-bottom-color: rgba(#bfe0ff, .5);
+}
+
+.reveal section[data-background-color] code {
+  background: rgba(#fff, .16);
+  color: #fff;
+}
+
+.reveal section[data-background-color] ul > li::before {
+  color: #bfe0ff;
+}
+
+// running-title.html sets body.on-dark-slide on those slides
+body.on-dark-slide .reveal .footer {
+  background: transparent;
+  border-top-color: rgba(#fff, .28);
+}
+
+body.on-dark-slide .reveal .footer,
+body.on-dark-slide .reveal .footer p {
+  color: rgba(#fff, .85);
+}
+
+body.on-dark-slide .reveal .slide-number,
+body.on-dark-slide .reveal .slide-number a {
+  color: rgba(#fff, .6) !important;
+}
+
+body.on-dark-slide .running-title {
+  color: rgba(#fff, .5);
+}
+
+.reveal section[data-background-color] div.callout .callout-content p,
+.reveal section[data-background-color] div.callout .callout-content li {
+  color: $statprimary;
+}
+
+// ---- misc -------------------------------------------------------------
+
+.reveal .fragment.highlight-blue.visible {
+  color: $statsecondary !important;
+  font-weight: 700;
+}
+
+.reveal .panel-tabset [role=tab] {
+  font-family: $stat-serif;
+  font-size: .72rem;
+  color: $statprimary;
+}
+
+.reveal .panel-tabset [role=tab][aria-selected=true] {
+  border-bottom: 2px solid $statsecondary;
+  font-weight: 700;
+}
+
+.reveal .slides section.smaller > *:not(h2) {
+  font-size: .9em;
+}
+
+// ---- PDF export (?print-pdf) ------------------------------------------
+
+.print-pdf .reveal .slides section {
+  display: block !important;
+  height: auto !important;
+  min-height: 0 !important;
+  padding-top: 0 !important;
+}
+
+.print-pdf .reveal .slides section > h2 + *,
+.print-pdf .reveal .slides section > *:last-child {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.print-pdf .reveal .slides section > h2 {
+  position: static !important;
+  margin: -1.1rem calc(-1 * var(--pad-x)) 1.1rem !important;
+}
+
+.print-pdf .reveal .slides section:has(> h3, > h4):not(:has(> p, > ul, > ol, > table, > div, > pre)) {
+  text-align: center !important;
+  padding-top: 3rem !important;
+}
+
+.print-pdf .reveal .footer,
+.print-pdf .reveal .slide-number {
+  position: absolute !important;
+  display: block !important;
+}
+
+.print-pdf .running-title {
+  display: none !important;
+}

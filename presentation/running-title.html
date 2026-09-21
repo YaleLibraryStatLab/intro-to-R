@@ -1,0 +1,44 @@
+<!--
+  Running header, top-right of every slide except the title slide.
+  Mirrors the beamer headline, which prints the deck title small and muted
+  and suppresses it on frame 1.
+
+  Injected via `include-after-body`. Styling lives in custom.scss
+  (.running-title); the title-slide suppression is the :has() rule there,
+  with the JS below as a fallback for browsers without :has().
+-->
+<div class="running-title" id="running-title"></div>
+
+<script>
+  (function () {
+    var el = document.getElementById("running-title");
+    if (!el) return;
+
+    // Pull the deck title from <title> so this file never needs editing.
+    var t = (document.title || "").trim();
+    el.textContent = t;
+
+    function sync() {
+      var slides = document.querySelectorAll(".reveal .slides > section");
+      if (!slides.length) return;
+
+      // Hide while the first slide (the title slide) is showing.
+      el.style.opacity = slides[0].classList.contains("present") ? "0" : "1";
+
+      // Flag dark-background slides so the footer and running title can
+      // invert -- otherwise the white footer band and the muted running
+      // title sit unreadably on the dark ground.
+      var cur = document.querySelector(".reveal .slides > section.present");
+      var dark = !!(cur && cur.hasAttribute("data-background-color"));
+      document.body.classList.toggle("on-dark-slide", dark);
+    }
+
+    if (window.Reveal && Reveal.on) {
+      Reveal.on("ready", sync);
+      Reveal.on("slidechanged", sync);
+    } else {
+      document.addEventListener("DOMContentLoaded", sync);
+      setTimeout(sync, 400);
+    }
+  })();
+</script>

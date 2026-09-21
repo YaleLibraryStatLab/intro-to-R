@@ -6,10 +6,11 @@
 <script src="01-rstats-presentation_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="01-rstats-presentation_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="01-rstats-presentation_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="01-rstats-presentation_files/libs/quarto-html/quarto-syntax-highlighting-de070a7b0ab54f8780927367ac907214.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<link href="01-rstats-presentation_files/libs/quarto-html/quarto-syntax-highlighting-662ae1889177880cb371f83234c0a158.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.7.30">
 
-  <title>Doing Statistics in R</title>
+  <meta name="author" content="Ted Ellsworth, PhD">
+  <title>Introduction to Statistical Programming in R</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -55,46 +56,46 @@
         -khtml-user-select: none; -moz-user-select: none;
         -ms-user-select: none; user-select: none;
         padding: 0 4px; width: 4em;
-        color: #aaaaaa;
       }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
     div.sourceCode
-      { color: #003b4f; background-color: #f1f3f5; }
+      { color: #24292e;  }
     @media screen {
     pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
     }
-    code span { color: #003b4f; } /* Normal */
-    code span.al { color: #ad0000; } /* Alert */
-    code span.an { color: #5e5e5e; } /* Annotation */
-    code span.at { color: #657422; } /* Attribute */
-    code span.bn { color: #ad0000; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #20794d; } /* Char */
-    code span.cn { color: #8f5902; } /* Constant */
-    code span.co { color: #5e5e5e; } /* Comment */
-    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
-    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
-    code span.dt { color: #ad0000; } /* DataType */
-    code span.dv { color: #ad0000; } /* DecVal */
-    code span.er { color: #ad0000; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #ad0000; } /* Float */
-    code span.fu { color: #4758ab; } /* Function */
-    code span.im { color: #00769e; } /* Import */
-    code span.in { color: #5e5e5e; } /* Information */
-    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
-    code span.op { color: #5e5e5e; } /* Operator */
-    code span.ot { color: #003b4f; } /* Other */
-    code span.pp { color: #ad0000; } /* Preprocessor */
-    code span.sc { color: #5e5e5e; } /* SpecialChar */
-    code span.ss { color: #20794d; } /* SpecialString */
-    code span.st { color: #20794d; } /* String */
-    code span.va { color: #111111; } /* Variable */
-    code span.vs { color: #20794d; } /* VerbatimString */
-    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+    code span { color: #24292e; } /* Normal */
+    code span.al { color: #ff5555; font-weight: bold; } /* Alert */
+    code span.an { color: #6a737d; } /* Annotation */
+    code span.at { color: #d73a49; } /* Attribute */
+    code span.bn { color: #005cc5; } /* BaseN */
+    code span.bu { color: #d73a49; } /* BuiltIn */
+    code span.cf { color: #d73a49; } /* ControlFlow */
+    code span.ch { color: #032f62; } /* Char */
+    code span.cn { color: #005cc5; } /* Constant */
+    code span.co { color: #6a737d; } /* Comment */
+    code span.cv { color: #6a737d; } /* CommentVar */
+    code span.do { color: #6a737d; } /* Documentation */
+    code span.dt { color: #d73a49; } /* DataType */
+    code span.dv { color: #005cc5; } /* DecVal */
+    code span.er { color: #ff5555; text-decoration: underline; } /* Error */
+    code span.ex { color: #d73a49; font-weight: bold; } /* Extension */
+    code span.fl { color: #005cc5; } /* Float */
+    code span.fu { color: #6f42c1; } /* Function */
+    code span.im { color: #032f62; } /* Import */
+    code span.in { color: #6a737d; } /* Information */
+    code span.kw { color: #d73a49; } /* Keyword */
+    code span.op { color: #24292e; } /* Operator */
+    code span.ot { color: #6f42c1; } /* Other */
+    code span.pp { color: #d73a49; } /* Preprocessor */
+    code span.re { color: #6a737d; } /* RegionMarker */
+    code span.sc { color: #005cc5; } /* SpecialChar */
+    code span.ss { color: #032f62; } /* SpecialString */
+    code span.st { color: #032f62; } /* String */
+    code span.va { color: #e36209; } /* Variable */
+    code span.vs { color: #032f62; } /* VerbatimString */
+    code span.wa { color: #ff5555; } /* Warning */
   </style>
-  <link rel="stylesheet" href="01-rstats-presentation_files/libs/revealjs/dist/theme/quarto-f563837468303362081e247dddd440d0.css">
+  <link rel="stylesheet" href="01-rstats-presentation_files/libs/revealjs/dist/theme/quarto-3ff70bdd36987a86c3dff9574813bf4d.css">
   <link rel="stylesheet" href="styles.css">
   <link href="01-rstats-presentation_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="01-rstats-presentation_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -111,7 +112,6 @@
     }
     .reveal .slide:not(.center) {
       height: 100%;
-      overflow-y: auto;
     }
     .reveal .slide.scrollable {
       overflow-y: auto;
@@ -193,14 +193,73 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Doing Statistics in R</h1>
-  <p class="subtitle">StatLab Workshop 01: Introduction to R</p>
+<!--
+  Title slide partial, matching the StatLab beamer title page:
+    title    : large, bold, statprimary, left-aligned
+    subtitle : statsecondary
+    author, affiliation, date : statprimary at 70%
+  All left-aligned, stacked, upper-middle of the slide. Light background.
+  Filled from the qmd YAML (title, subtitle, author, and term or date).
+  Use `term: "Fall 2026"` for a semester: Quarto parses `date` values and
+  would turn "Fall 2026" into 2026-01-01.
+-->
 
-<div class="quarto-title-authors">
-</div>
+<section id="title-slide" class="title-slide center">
+  <h1 class="title">Introduction to Statistical Programming in R</h1>
+  <p class="subtitle">Yale Library StatLab</p>
 
+  <div class="title-meta">
+    <p class="author">Ted Ellsworth, PhD</p>
+    <p class="affiliation">
+      <a href="https://library.yale.edu/help-and-research-support/research-support/statlab">Yale Statistical Support Services</a>
+    </p>
+    <p class="date">Fall 2026</p>
+  </div>
 </section>
+
+<style>
+.reveal .slides section.title-slide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+  height: 100%;
+  padding-left: 2.1rem;
+  padding-right: 2.1rem;
+}
+
+.reveal .slides section.title-slide h1.title {
+  background: transparent;
+  color: #2c3e50;
+  font-weight: 700;
+  font-size: 1.95rem;
+  line-height: 1.15;
+  margin: 0 0 0.35rem;
+  padding: 0;
+  text-align: left;
+}
+.reveal .slides section.title-slide .subtitle {
+  color: #2980b9;
+  font-weight: 700;
+  font-size: 1.02rem;
+  line-height: 1.3;
+  margin: 0 0 1.6rem;
+  text-align: left;
+}
+.reveal .slides section.title-slide .title-meta p {
+  margin: 0 0 0.28rem;
+  font-size: 0.76rem;
+  line-height: 1.4;
+  color: rgba(44, 62, 80, 0.7);
+  text-align: left;
+}
+.reveal .slides section.title-slide .title-meta a {
+  color: rgba(44, 62, 80, 0.7);
+  border-bottom: 1px solid rgba(44, 62, 80, 0.25);
+  text-decoration: none;
+}
+</style>
 <section id="by-the-end-of-today" class="slide level2">
 <h2>By the end of today</h2>
 <p>You will have run a complete statistical analysis in R:</p>
@@ -281,15 +340,21 @@
 </table>
 <p>The analysis is the <em>same shape</em> all three times. That is deliberate, because by the third pass, the shape is yours.</p>
 </section>
-<section id="two-rules" class="slide level2 scrollable">
+<section id="two-rules" class="slide level2">
 <h2>Two rules</h2>
 <ol type="1">
 <li class="fragment"><strong>Type it, don’t read it.</strong> Watching me will not put it in your hands.
 <ul>
 <li class="fragment"><p>When you see a code block like this, type it into your script:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>counties <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/medicaid.csv"</span>, <span class="at">row.names =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># a comment: R skips this whole line</span></span>
+<span id="cb1-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span>   <span class="co"># and everything after a # on a line</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
 </div></li>
+<li class="fragment"><p>What prints underneath (<code>[1] 4</code>) is R’s answer. Don’t type that.</p></li>
+<li class="fragment"><p><code>#</code> starts a <strong>comment</strong>. Your scripts are full of them: they are the instructions. Write your code on the blank line below, never after a <code>#</code>, or R will skip it.</p></li>
 </ul></li>
 <li class="fragment"><strong>Errors are the job, not a failure.</strong> I will make several on purpose. You will make more by accident. This never stops, for anyone.</li>
 </ol>
@@ -297,12 +362,11 @@
 <p>Red sticky = stuck. Green = through. Put the red one up early.</p>
 </div>
 </section>
-<section>
-<section id="setup" class="title-slide slide level1 center">
-<h1>Setup</h1>
-
+<section id="section" class="slide level2">
+<h2></h2>
+<h3 id="setup">Setup</h3>
 </section>
-<section id="getting-in" class="slide level2 scrollable">
+<section id="getting-in" class="slide level2">
 <h2>Getting in</h2>
 <p>We are using <strong>Positron</strong>, Posit’s data-science IDE, the one they are building next after RStudio.</p>
 <ol type="1">
@@ -312,7 +376,7 @@
 <li class="fragment">Run a line with <strong>Cmd+Enter</strong> (Mac) / <strong>Ctrl+Enter</strong> (Windows)</li>
 </ol>
 <div class="fragment">
-<p>Open the <strong>folder</strong>, not a file. Positron makes whatever folder you open the working directory, which is the whole reason we will never type a file path today.</p>
+<p>Open the <strong>folder</strong>, not a file. Positron makes whatever folder you open the working directory, which is why every file path we type today is short and the same on every laptop.</p>
 </div>
 </section>
 <section id="the-parts-you-need-today" class="slide level2">
@@ -348,11 +412,10 @@
 <div class="fragment">
 <p>Everything else (the Command Palette, extensions, source control) you can ignore for three hours. Editor, Console, Variables, Plots. That is the whole interface today.</p>
 </div>
-</section></section>
-<section>
-<section id="module-1-i-do" class="title-slide slide level1 center">
-<h1>Module 1: I do</h1>
-
+</section>
+<section id="section-1" class="slide level2">
+<h2></h2>
+<h3 id="module-1-i-do">Module 1: I do</h3>
 </section>
 <section id="two-things-to-name-first" class="slide level2">
 <h2>Two things to name first</h2>
@@ -368,7 +431,7 @@
 <section id="anatomy-of-a-function-call" class="slide level2">
 <h2>Anatomy of a function call</h2>
 <div class="anatomy big">
-<p><span class="fragment highlight-current-red" data-fragment-index="1">read.csv</span><span class="fragment highlight-current-red" data-fragment-index="2">(</span><span class="fragment highlight-current-red" data-fragment-index="3">“data/medicaid.csv”</span><span class="fragment highlight-current-red" data-fragment-index="5">,&nbsp;</span><span class="fragment highlight-current-red" data-fragment-index="4">row.names&nbsp;=&nbsp;1</span><span class="fragment highlight-current-red" data-fragment-index="2">)</span></p>
+<p><span class="fragment highlight-current-red" data-fragment-index="1">read.csv</span><span class="fragment highlight-current-red" data-fragment-index="2">(</span><span class="fragment highlight-current-red" data-fragment-index="3">"data/medicaid.csv"</span><span class="fragment highlight-current-red" data-fragment-index="5">,&nbsp;</span><span class="fragment highlight-current-red" data-fragment-index="4">row.names&nbsp;=&nbsp;1</span><span class="fragment highlight-current-red" data-fragment-index="2">)</span></p>
 </div>
 <div class="fragment" data-fragment-index="1">
 <p><strong><code>read.csv</code></strong> is the function name. It says what you want done.</p>
@@ -389,10 +452,48 @@
 <p>Two questions get you through any function: <strong>what do I want R to do</strong>, and <strong>what does R need to know to do it?</strong></p>
 </div>
 </section>
+<section id="inside-the-quotes-a-path" class="slide level2">
+<h2>Inside the quotes: a path</h2>
+<div class="anatomy big">
+<p><span class="fragment highlight-current-red" data-fragment-index="1">"</span><span class="fragment highlight-current-red" data-fragment-index="2">data/</span><span class="fragment highlight-current-red" data-fragment-index="3">medicaid<span class="fragment highlight-current-red" data-fragment-index="4">.csv</span></span><span class="fragment highlight-current-red" data-fragment-index="1">"</span></p>
+</div>
+<div class="fragment" data-fragment-index="1">
+<p><strong><code>" "</code></strong> make it a <strong>string</strong>: text, taken as-is. Without them, R reads <code>medicaid.csv</code> as the name of an object, goes looking, and fails.</p>
+</div>
+<div class="fragment" data-fragment-index="2">
+<p><strong><code>data/</code></strong> is a folder. Folder, slash, file: that is a <strong>path</strong>, directions to the file, starting from the folder you opened.</p>
+</div>
+<div class="fragment" data-fragment-index="3">
+<p><strong><code>medicaid.csv</code></strong> is the file itself.</p>
+</div>
+<div class="fragment" data-fragment-index="4">
+<p><strong><code>.csv</code></strong> is the <strong>extension</strong>: what kind of file it is. Comma-separated values, a table saved as plain text. <code>read.csv()</code> reads this kind; an Excel <code>.xlsx</code> needs a different function. Finder and File Explorer hide extensions by default, so you may only see <code>medicaid</code> there.</p>
+</div>
+</section>
+<section id="mac-vs.-windows" class="slide level2">
+<h2>Mac vs.&nbsp;Windows</h2>
+<p>The full path to the same file, on two laptops:</p>
+<table class="caption-top">
+<tbody>
+<tr class="odd">
+<td><strong>Mac</strong></td>
+<td><code>/Users/you/01-RStats/data/medicaid.csv</code></td>
+</tr>
+<tr class="even">
+<td><strong>Windows</strong></td>
+<td><code>C:\Users\you\01-RStats\data\medicaid.csv</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li class="fragment">Ours skips all of that. <code>data/medicaid.csv</code> starts from the folder you opened, so it is the same on every laptop.</li>
+<li class="fragment">In R, always write <code>/</code>, even on Windows. R reads a lone <code>\</code> as the start of a special character, so <code>"data\medicaid.csv"</code> is an error.</li>
+</ul>
+</section>
 <section id="step-1-read-the-data" class="slide level2">
 <h2>Step 1: read the data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a>counties <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/medicaid.csv"</span>, <span class="at">row.names =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="" aria-hidden="true" tabindex="-1"></a>counties <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/medicaid.csv"</span>, <span class="at">row.names =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Nothing printed. That is what success looks like: <code>&lt;-</code> stores silently.</p>
 <div class="fragment">
@@ -402,13 +503,13 @@
 <section id="step-1-three-questions" class="slide level2">
 <h2>Step 1: three questions</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="fu">dim</span>(counties)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(counties)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 26066    13</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="fu">names</span>(counties)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(counties)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "state"            "county"           "county_code"     
  [4] "year"             "population_20_64" "yaca"            
@@ -418,7 +519,7 @@
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="fu">head</span>(counties, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(counties, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  state             county county_code year population_20_64 yaca perc_white
 1    AL Autauga County, AL        1001 2009            31271   NA   80.42915
@@ -439,14 +540,14 @@
 <section id="step-2-look-at-the-outcome" class="slide level2">
 <h2>Step 2: look at the outcome</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="fu">hist</span>(counties<span class="sc">$</span>crude_rate_20_64)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(counties<span class="sc">$</span>crude_rate_20_64)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="01-rstats-presentation_files/figure-revealjs/unnamed-chunk-8-1.png" class="quarto-figure quarto-figure-center r-stretch" width="864"><p>Never test a variable you have not looked at. Defaults are fine; we are not decorating anything yet.</p>
 </section>
 <section id="what-is-that" class="slide level2">
 <h2>What is that <code>$</code>?</h2>
-<div style="font-size: 1.3em; text-align: center; margin: 0.6em 0;">
+<div class="codeline" style="font-size: 1.3rem;">
 <p><code>hist(counties</code><span class="pop"><code>$</code></span><code>crude_rate_20_64)</code></p>
 </div>
 <p>You have not seen that symbol before. <strong>Don’t look it up yet.</strong></p>
@@ -473,7 +574,7 @@
 <li class="fragment">Then check. Guessing and confirming is faster than looking up cold, and you remember it longer.</li>
 </ul>
 </section>
-<section id="reading-from-the-inside-out" class="slide level2 scrollable">
+<section id="reading-from-the-inside-out" class="slide level2">
 <h2>Reading from the inside out</h2>
 <p><code>hist(counties$crude_rate_20_64)</code> has two steps, and the inner one happens first.</p>
 <ol type="1">
@@ -499,8 +600,8 @@
 <section id="step-3a-keep-one-year" class="slide level2">
 <h2>Step 3a: keep one year</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a>d2014 <span class="ot">&lt;-</span> counties[counties<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2014</span>, ]</span>
-<span id="cb10-2"><a href=""></a><span class="fu">dim</span>(d2014)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="" aria-hidden="true" tabindex="-1"></a>d2014 <span class="ot">&lt;-</span> counties[counties<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2014</span>, ]</span>
+<span id="cb11-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(d2014)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2372   13</code></pre>
 </div>
@@ -514,7 +615,7 @@
 </section>
 <section id="reading-a-line-right-to-left" class="slide level2">
 <h2>Reading a line, right to left</h2>
-<div style="font-size: 1.05em; text-align: center; margin: 0.5em 0;">
+<div class="codeline" style="font-size: 1.1rem;">
 <p><code>d2014 &lt;- counties[counties$year == 2014, ]</code></p>
 </div>
 <p>Longer lines are still one sentence. Start at the right:</p>
@@ -535,8 +636,8 @@
 <section id="step-3b-label-each-state" class="slide level2">
 <h2>Step 3b: label each state</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a>d2014<span class="sc">$</span>expanded <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="sc">!</span><span class="fu">is.na</span>(d2014<span class="sc">$</span>yaca) <span class="sc">&amp;</span> d2014<span class="sc">$</span>yaca <span class="sc">==</span> <span class="dv">2014</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb12-2"><a href=""></a><span class="fu">table</span>(d2014<span class="sc">$</span>expanded)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="" aria-hidden="true" tabindex="-1"></a>d2014<span class="sc">$</span>expanded <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="sc">!</span><span class="fu">is.na</span>(d2014<span class="sc">$</span>yaca) <span class="sc">&amp;</span> d2014<span class="sc">$</span>yaca <span class="sc">==</span> <span class="dv">2014</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb13-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(d2014<span class="sc">$</span>expanded)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
    0    1 
@@ -561,11 +662,11 @@
 <p>Silent wrong answers are worse than errors. This is the most common way R hands you one.</p>
 </div>
 </section>
-<section id="ask-r-itself" class="slide level2 scrollable">
+<section id="ask-r-itself" class="slide level2">
 <h2>Ask R itself</h2>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a>?mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="" aria-hidden="true" tabindex="-1"></a>?mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The help page opens in the <strong>Help</strong> pane. The <strong>Usage</strong> line at the top lists every argument and its default:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a><span class="fu">mean</span>(x, <span class="at">trim =</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">FALSE</span>, ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x, <span class="at">trim =</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">FALSE</span>, ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <p>Three questions for the room:</p>
 <ol type="1">
@@ -578,12 +679,12 @@
 <section id="na.rm-false-is-the-default" class="slide level2">
 <h2><code>na.rm = FALSE</code> is the default</h2>
 <p>R will not skip missing values unless you tell it to.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a><span class="fu">mean</span>(counties<span class="sc">$</span>median_income)</span>
-<span id="cb16-2"><a href=""></a><span class="co">#&gt; NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(counties<span class="sc">$</span>median_income)</span>
+<span id="cb17-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Fifteen county-year rows are missing an income. One <code>NA</code> is enough to make the whole answer <code>NA</code>.</p>
 <div class="fragment">
-<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a><span class="fu">mean</span>(counties<span class="sc">$</span>median_income, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb17-2"><a href=""></a><span class="co">#&gt; 47.09</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(counties<span class="sc">$</span>median_income, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb18-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 47.09</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <p>This is the most common “why is my result <code>NA</code>?” in R. When it happens, <code>?</code> the function and look at what its defaults were doing.</p>
@@ -592,9 +693,9 @@
 <section id="step-3c-average-to-the-state" class="slide level2">
 <h2>Step 3c: average to the state</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a>states_unwt <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(crude_rate_20_64 <span class="sc">~</span> state <span class="sc">+</span> expanded,</span>
-<span id="cb18-2"><a href=""></a>                         <span class="at">data =</span> d2014, <span class="at">FUN =</span> mean)</span>
-<span id="cb18-3"><a href=""></a><span class="fu">dim</span>(states_unwt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="" aria-hidden="true" tabindex="-1"></a>states_unwt <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(crude_rate_20_64 <span class="sc">~</span> state <span class="sc">+</span> expanded,</span>
+<span id="cb19-2"><a href="" aria-hidden="true" tabindex="-1"></a>                         <span class="at">data =</span> d2014, <span class="at">FUN =</span> mean)</span>
+<span id="cb19-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(states_unwt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 39  3</code></pre>
 </div>
@@ -607,7 +708,7 @@
 <section id="the-formula-y-x" class="slide level2">
 <h2>The formula: <code>y ~ x</code></h2>
 <p>That squiggle is the most reusable thing you will learn today.</p>
-<div style="font-size: 1.5em; text-align: center; margin: 0.5em 0;">
+<div class="codeline" style="font-size: 1.5rem;">
 <p><code>goal( y ~ x , data = d )</code></p>
 </div>
 <p>Read <code>~</code> as <strong>“broken down by”</strong>.</p>
@@ -640,7 +741,7 @@
 <section id="that-line-hid-a-decision" class="slide level2">
 <h2>That line hid a decision</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a><span class="fu">range</span>(d2014<span class="sc">$</span>population_20_64)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(d2014<span class="sc">$</span>population_20_64)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]     224 6298815</code></pre>
 </div>
@@ -652,17 +753,17 @@
 <section id="a-rate-is-deaths-over-people" class="slide level2">
 <h2>A rate is deaths over people</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a>d2014<span class="sc">$</span>deaths <span class="ot">&lt;-</span> d2014<span class="sc">$</span>crude_rate_20_64 <span class="sc">*</span> d2014<span class="sc">$</span>population_20_64 <span class="sc">/</span> <span class="fl">1e5</span></span>
-<span id="cb22-2"><a href=""></a></span>
-<span id="cb22-3"><a href=""></a>state_deaths <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(deaths <span class="sc">~</span> state <span class="sc">+</span> expanded, <span class="at">data =</span> d2014, <span class="at">FUN =</span> sum)</span>
-<span id="cb22-4"><a href=""></a>state_people <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(population_20_64 <span class="sc">~</span> state <span class="sc">+</span> expanded, <span class="at">data =</span> d2014, <span class="at">FUN =</span> sum)</span>
-<span id="cb22-5"><a href=""></a></span>
-<span id="cb22-6"><a href=""></a>states <span class="ot">&lt;-</span> state_deaths</span>
-<span id="cb22-7"><a href=""></a>states<span class="sc">$</span>crude_rate_20_64 <span class="ot">&lt;-</span> state_deaths<span class="sc">$</span>deaths <span class="sc">/</span></span>
-<span id="cb22-8"><a href=""></a>                           state_people<span class="sc">$</span>population_20_64 <span class="sc">*</span> <span class="fl">1e5</span></span>
-<span id="cb22-9"><a href=""></a></span>
-<span id="cb22-10"><a href=""></a>states      <span class="ot">&lt;-</span> states[<span class="fu">order</span>(states<span class="sc">$</span>state), ]</span>
-<span id="cb22-11"><a href=""></a>states_unwt <span class="ot">&lt;-</span> states_unwt[<span class="fu">order</span>(states_unwt<span class="sc">$</span>state), ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="" aria-hidden="true" tabindex="-1"></a>d2014<span class="sc">$</span>deaths <span class="ot">&lt;-</span> d2014<span class="sc">$</span>crude_rate_20_64 <span class="sc">*</span> d2014<span class="sc">$</span>population_20_64 <span class="sc">/</span> <span class="fl">1e5</span></span>
+<span id="cb23-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="" aria-hidden="true" tabindex="-1"></a>state_deaths <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(deaths <span class="sc">~</span> state <span class="sc">+</span> expanded, <span class="at">data =</span> d2014, <span class="at">FUN =</span> sum)</span>
+<span id="cb23-4"><a href="" aria-hidden="true" tabindex="-1"></a>state_people <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(population_20_64 <span class="sc">~</span> state <span class="sc">+</span> expanded, <span class="at">data =</span> d2014, <span class="at">FUN =</span> sum)</span>
+<span id="cb23-5"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="" aria-hidden="true" tabindex="-1"></a>states <span class="ot">&lt;-</span> state_deaths</span>
+<span id="cb23-7"><a href="" aria-hidden="true" tabindex="-1"></a>states<span class="sc">$</span>crude_rate_20_64 <span class="ot">&lt;-</span> state_deaths<span class="sc">$</span>deaths <span class="sc">/</span></span>
+<span id="cb23-8"><a href="" aria-hidden="true" tabindex="-1"></a>                           state_people<span class="sc">$</span>population_20_64 <span class="sc">*</span> <span class="fl">1e5</span></span>
+<span id="cb23-9"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-10"><a href="" aria-hidden="true" tabindex="-1"></a>states      <span class="ot">&lt;-</span> states[<span class="fu">order</span>(states<span class="sc">$</span>state), ]</span>
+<span id="cb23-11"><a href="" aria-hidden="true" tabindex="-1"></a>states_unwt <span class="ot">&lt;-</span> states_unwt[<span class="fu">order</span>(states_unwt<span class="sc">$</span>state), ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Add up the deaths, add up the people, divide once. Same <code>aggregate()</code> template, <code>FUN = sum</code> instead of <code>mean</code>.</p>
 <div class="fragment">
@@ -672,13 +773,13 @@
 <section id="same-39-states-two-different-answers" class="slide level2">
 <h2>Same 39 states, two different answers</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a>gap <span class="ot">&lt;-</span> states_unwt<span class="sc">$</span>crude_rate_20_64 <span class="sc">-</span> states<span class="sc">$</span>crude_rate_20_64</span>
-<span id="cb23-2"><a href=""></a><span class="fu">summary</span>(gap)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="" aria-hidden="true" tabindex="-1"></a>gap <span class="ot">&lt;-</span> states_unwt<span class="sc">$</span>crude_rate_20_64 <span class="sc">-</span> states<span class="sc">$</span>crude_rate_20_64</span>
+<span id="cb24-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(gap)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
  -6.355  35.360  71.739  63.498  82.872 137.373 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a>states<span class="sc">$</span>state[<span class="fu">abs</span>(gap) <span class="sc">&gt;</span> <span class="dv">75</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="" aria-hidden="true" tabindex="-1"></a>states<span class="sc">$</span>state[<span class="fu">abs</span>(gap) <span class="sc">&gt;</span> <span class="dv">75</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "AR" "AZ" "CA" "FL" "GA" "IL" "KS" "MO" "NC" "ND" "NM" "OK" "OR" "SC"
 [15] "SD" "TN" "TX"</code></pre>
@@ -775,11 +876,11 @@
 <section id="describe-step-4-look-at-the-comparison" class="slide level2">
 <h2>DESCRIBE · Step 4: look at the comparison</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a><span class="fu">boxplot</span>(crude_rate_20_64 <span class="sc">~</span> expanded, <span class="at">data =</span> states)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(crude_rate_20_64 <span class="sc">~</span> expanded, <span class="at">data =</span> states)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="01-rstats-presentation_files/figure-revealjs/unnamed-chunk-15-1.png" class="quarto-figure quarto-figure-center r-stretch" width="864"><div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href=""></a><span class="fu">aggregate</span>(crude_rate_20_64 <span class="sc">~</span> expanded, <span class="at">data =</span> states, <span class="at">FUN =</span> mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(crude_rate_20_64 <span class="sc">~</span> expanded, <span class="at">data =</span> states, <span class="at">FUN =</span> mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  expanded crude_rate_20_64
 1        0         390.1661
@@ -790,10 +891,10 @@
 <section id="describe-step-4-the-estimate-as-one-number" class="slide level2">
 <h2>DESCRIBE · Step 4: the estimate, as one number</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href=""></a>group_means <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(crude_rate_20_64 <span class="sc">~</span> expanded,</span>
-<span id="cb30-2"><a href=""></a>                         <span class="at">data =</span> states, <span class="at">FUN =</span> mean)</span>
-<span id="cb30-3"><a href=""></a>diff_obs <span class="ot">&lt;-</span> group_means<span class="sc">$</span>crude_rate_20_64[<span class="dv">2</span>] <span class="sc">-</span> group_means<span class="sc">$</span>crude_rate_20_64[<span class="dv">1</span>]</span>
-<span id="cb30-4"><a href=""></a>diff_obs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="" aria-hidden="true" tabindex="-1"></a>group_means <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(crude_rate_20_64 <span class="sc">~</span> expanded,</span>
+<span id="cb31-2"><a href="" aria-hidden="true" tabindex="-1"></a>                         <span class="at">data =</span> states, <span class="at">FUN =</span> mean)</span>
+<span id="cb31-3"><a href="" aria-hidden="true" tabindex="-1"></a>diff_obs <span class="ot">&lt;-</span> group_means<span class="sc">$</span>crude_rate_20_64[<span class="dv">2</span>] <span class="sc">-</span> group_means<span class="sc">$</span>crude_rate_20_64[<span class="dv">1</span>]</span>
+<span id="cb31-4"><a href="" aria-hidden="true" tabindex="-1"></a>diff_obs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -39.17766</code></pre>
 </div>
@@ -804,7 +905,7 @@
 <section id="test-step-5-the-test-you-already-know" class="slide level2">
 <h2>TEST · Step 5: the test you already know</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a><span class="fu">t.test</span>(crude_rate_20_64 <span class="sc">~</span> expanded, <span class="at">data =</span> states)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(crude_rate_20_64 <span class="sc">~</span> expanded, <span class="at">data =</span> states)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Welch Two Sample t-test
@@ -866,21 +967,21 @@ mean in group 0 mean in group 1
 <section id="step-6-one-fake-world" class="slide level2">
 <h2>Step 6: one fake world</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href=""></a>shuffled <span class="ot">&lt;-</span> <span class="fu">sample</span>(states<span class="sc">$</span>expanded)</span>
-<span id="cb34-2"><a href=""></a></span>
-<span id="cb34-3"><a href=""></a><span class="fu">mean</span>(states<span class="sc">$</span>crude_rate_20_64[shuffled <span class="sc">==</span> <span class="dv">1</span>]) <span class="sc">-</span></span>
-<span id="cb34-4"><a href=""></a>  <span class="fu">mean</span>(states<span class="sc">$</span>crude_rate_20_64[shuffled <span class="sc">==</span> <span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="" aria-hidden="true" tabindex="-1"></a>shuffled <span class="ot">&lt;-</span> <span class="fu">sample</span>(states<span class="sc">$</span>expanded)</span>
+<span id="cb35-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(states<span class="sc">$</span>crude_rate_20_64[shuffled <span class="sc">==</span> <span class="dv">1</span>]) <span class="sc">-</span></span>
+<span id="cb35-4"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(states<span class="sc">$</span>crude_rate_20_64[shuffled <span class="sc">==</span> <span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 4.639319</code></pre>
+<pre><code>[1] -31.18304</code></pre>
 </div>
 </div>
 <p>Run it again:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href=""></a>shuffled <span class="ot">&lt;-</span> <span class="fu">sample</span>(states<span class="sc">$</span>expanded)</span>
-<span id="cb36-2"><a href=""></a><span class="fu">mean</span>(states<span class="sc">$</span>crude_rate_20_64[shuffled <span class="sc">==</span> <span class="dv">1</span>]) <span class="sc">-</span></span>
-<span id="cb36-3"><a href=""></a>  <span class="fu">mean</span>(states<span class="sc">$</span>crude_rate_20_64[shuffled <span class="sc">==</span> <span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="" aria-hidden="true" tabindex="-1"></a>shuffled <span class="ot">&lt;-</span> <span class="fu">sample</span>(states<span class="sc">$</span>expanded)</span>
+<span id="cb37-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(states<span class="sc">$</span>crude_rate_20_64[shuffled <span class="sc">==</span> <span class="dv">1</span>]) <span class="sc">-</span></span>
+<span id="cb37-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(states<span class="sc">$</span>crude_rate_20_64[shuffled <span class="sc">==</span> <span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 60.24174</code></pre>
+<pre><code>[1] 18.58739</code></pre>
 </div>
 </div>
 <p>That bouncing <strong>is</strong> sampling variation. You are looking straight at it.</p>
@@ -888,12 +989,12 @@ mean in group 0 mean in group 1
 <section id="step-6-a-thousand-fake-worlds" class="slide level2">
 <h2>Step 6: a thousand fake worlds</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href=""></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
-<span id="cb38-2"><a href=""></a>diffs <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">1000</span>, {</span>
-<span id="cb38-3"><a href=""></a>  shuffled <span class="ot">&lt;-</span> <span class="fu">sample</span>(states<span class="sc">$</span>expanded)</span>
-<span id="cb38-4"><a href=""></a>  <span class="fu">mean</span>(states<span class="sc">$</span>crude_rate_20_64[shuffled <span class="sc">==</span> <span class="dv">1</span>]) <span class="sc">-</span></span>
-<span id="cb38-5"><a href=""></a>    <span class="fu">mean</span>(states<span class="sc">$</span>crude_rate_20_64[shuffled <span class="sc">==</span> <span class="dv">0</span>])</span>
-<span id="cb38-6"><a href=""></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb39-2"><a href="" aria-hidden="true" tabindex="-1"></a>diffs <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">1000</span>, {</span>
+<span id="cb39-3"><a href="" aria-hidden="true" tabindex="-1"></a>  shuffled <span class="ot">&lt;-</span> <span class="fu">sample</span>(states<span class="sc">$</span>expanded)</span>
+<span id="cb39-4"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(states<span class="sc">$</span>crude_rate_20_64[shuffled <span class="sc">==</span> <span class="dv">1</span>]) <span class="sc">-</span></span>
+<span id="cb39-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(states<span class="sc">$</span>crude_rate_20_64[shuffled <span class="sc">==</span> <span class="dv">0</span>])</span>
+<span id="cb39-6"><a href="" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>replicate()</code> does a thing <code>n</code> times and keeps the answers.</p>
 <p>One thousand worlds in which the policy did nothing.</p>
@@ -901,12 +1002,12 @@ mean in group 0 mean in group 1
 <section id="step-6-and-there-it-is" class="slide level2">
 <h2>Step 6: and there it is</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href=""></a><span class="fu">hist</span>(diffs)</span>
-<span id="cb39-2"><a href=""></a><span class="fu">abline</span>(<span class="at">v =</span> diff_obs, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(diffs)</span>
+<span id="cb40-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> diff_obs, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="01-rstats-presentation_files/figure-revealjs/unnamed-chunk-22-1.png" class="quarto-figure quarto-figure-center r-stretch" width="864"><div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href=""></a><span class="fu">mean</span>(<span class="fu">abs</span>(diffs) <span class="sc">&gt;=</span> <span class="fu">abs</span>(diff_obs))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">abs</span>(diffs) <span class="sc">&gt;=</span> <span class="fu">abs</span>(diff_obs))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.139</code></pre>
 </div>
@@ -915,11 +1016,11 @@ mean in group 0 mean in group 1
 </section>
 <section id="that-one-line-does-three-things" class="slide level2">
 <h2>That one line does three things</h2>
-<div class="sourceCode" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href=""></a><span class="fu">mean</span>( <span class="fu">abs</span>(diffs) <span class="sc">&gt;=</span> <span class="fu">abs</span>(diff_obs) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>( <span class="fu">abs</span>(diffs) <span class="sc">&gt;=</span> <span class="fu">abs</span>(diff_obs) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <table class="caption-top">
 <colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
+<col style="width: 16%">
+<col style="width: 83%">
 </colgroup>
 <tbody>
 <tr class="odd">
@@ -940,7 +1041,7 @@ mean in group 0 mean in group 1
 <section id="drop-the-abs-and-see" class="slide level2">
 <h2>Drop the <code>abs()</code> and see</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href=""></a><span class="fu">mean</span>(diffs <span class="sc">&gt;=</span> diff_obs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(diffs <span class="sc">&gt;=</span> diff_obs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.93</code></pre>
 </div>
@@ -966,8 +1067,8 @@ mean in group 0 mean in group 1
 <section id="model-step-7-the-same-answer-as-a-regression" class="slide level2">
 <h2>MODEL · Step 7: the same answer, as a regression</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href=""></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(crude_rate_20_64 <span class="sc">~</span> expanded, <span class="at">data =</span> states)</span>
-<span id="cb45-2"><a href=""></a><span class="fu">summary</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(crude_rate_20_64 <span class="sc">~</span> expanded, <span class="at">data =</span> states)</span>
+<span id="cb46-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1026,7 +1127,7 @@ F-statistic:  2.38 on 1 and 37 DF,  p-value: 0.1314</code></pre>
 <section id="step-8-why-we-used-39-rows-and-not-2372" class="slide level2">
 <h2>Step 8: why we used 39 rows and not 2,372</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href=""></a><span class="fu">t.test</span>(crude_rate_20_64 <span class="sc">~</span> expanded, <span class="at">data =</span> d2014)<span class="sc">$</span>p.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(crude_rate_20_64 <span class="sc">~</span> expanded, <span class="at">data =</span> d2014)<span class="sc">$</span>p.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5.687914e-17</code></pre>
 </div>
@@ -1299,13 +1400,12 @@ sample  set.seed  replicate</code></pre>
 <div class="fragment">
 <p>If you get <code>undefined columns selected</code>, you almost certainly left out the comma in the first form.</p>
 </div>
-</section></section>
-<section>
-<section id="module-2-we-do" class="title-slide slide level1 center">
-<h1>Module 2: We do</h1>
-
 </section>
-<section id="your-turn-with-a-partner" class="slide level2">
+<section id="section-2" class="slide level2">
+<h2></h2>
+<h3 id="module-2-we-do">Module 2: We do</h3>
+</section>
+<section id="your-turn-with-a-partner" class="slide level2" data-background-color="#1f4e79">
 <h2>Your turn, with a partner</h2>
 <p>Open <code>scripts/02-we-do.R</code>.</p>
 <blockquote>
@@ -1323,17 +1423,16 @@ sample  set.seed  replicate</code></pre>
 <p>Two things you have not seen:</p>
 <p><strong>Making groups from a number.</strong> Expansion came ready-made as 0/1. Poverty is continuous, so you split it at the median with <code>ifelse()</code>.</p>
 <p><strong>A result that runs off the page.</strong> Your observed difference may fall outside the whole null distribution:</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href=""></a><span class="fu">hist</span>(diffs, <span class="at">xlim =</span> <span class="fu">range</span>(<span class="fu">c</span>(diffs, diff_obs)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(diffs, <span class="at">xlim =</span> <span class="fu">range</span>(<span class="fu">c</span>(diffs, diff_obs)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <p>If <code>mean(abs(diffs) &gt;= abs(diff_obs))</code> gives you <code>0</code>, that is not p = 0. None of 1000 shuffles got that far, so <strong>report p &lt; 0.001</strong>.</p>
 </div>
-</section></section>
-<section>
-<section id="module-3-you-do" class="title-slide slide level1 center">
-<h1>Module 3: You do</h1>
-
 </section>
-<section id="on-your-own" class="slide level2">
+<section id="section-3" class="slide level2">
+<h2></h2>
+<h3 id="module-3-you-do">Module 3: You do</h3>
+</section>
+<section id="on-your-own" class="slide level2" data-background-color="#1f4e79">
 <h2>On your own</h2>
 <p>Open <code>scripts/03-they-do.R</code>.</p>
 <blockquote>
@@ -1346,7 +1445,7 @@ sample  set.seed  replicate</code></pre>
 <li class="fragment">Step 8 asks you to write the finding in prose. Do that one.</li>
 </ul>
 </section>
-<section id="if-you-finish-early" class="slide level2 scrollable">
+<section id="if-you-finish-early" class="slide level2">
 <h2>If you finish early</h2>
 <ol type="1">
 <li class="fragment">Swap the grouping to <code>median_income</code>. Does the story change?</li>
@@ -1354,11 +1453,10 @@ sample  set.seed  replicate</code></pre>
 <li class="fragment">Put two predictors in one model. Watch what happens to each.</li>
 <li class="fragment"><strong>Point today’s script at your own data.</strong> That is the actual goal, and we are here for another twenty minutes.</li>
 </ol>
-</section></section>
-<section>
-<section id="where-this-goes" class="title-slide slide level1 center">
-<h1>Where this goes</h1>
-
+</section>
+<section id="section-4" class="slide level2">
+<h2></h2>
+<h3 id="where-this-goes">Where this goes</h3>
 </section>
 <section id="what-today-deliberately-left-out" class="slide level2">
 <h2>What today deliberately left out</h2>
@@ -1379,6 +1477,47 @@ sample  set.seed  replicate</code></pre>
 <div class="fragment">
 <p>If a script only runs after you have run some <em>other</em> thing first, it isn’t finished.</p>
 </div>
+</section>
+<section id="common-errors-to-watch-for-as-you-start" class="slide level2">
+<h2>Common errors to watch for as you start</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 71%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>You see</th>
+<th>What it means, and what to check</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>c(1, "two", 3)</code> gives <code>"1" "two" "3"</code></td>
+<td>A vector holds <strong>one type</strong>. One piece of text turns every value into text. Many functions need a specific type, and a mismatch is behind a lot of errors. Check with <code>class()</code>.</td>
+</tr>
+<tr class="even">
+<td><code>object 'x' not found</code></td>
+<td>Nothing by that name exists: a typo (<code>State</code> is not <code>state</code>), or you skipped the line that makes it. Look in the <strong>Variables</strong> pane.</td>
+</tr>
+<tr class="odd">
+<td><code>unexpected symbol</code><br><code>unexpected ')'</code></td>
+<td>A typo R can’t read, like a missing comma or an extra <code>)</code>. R quotes your line up to the point where it got lost.</td>
+</tr>
+<tr class="even">
+<td><code>+</code> in the Console, not <code>&gt;</code></td>
+<td>The line isn’t finished. Every <code>(</code> needs a <code>)</code>: <code>ifelse(x, ifelse(z == x, 1, 0), NA</code> opens two and closes one. Type the missing <code>)</code>, press Enter, then fix your script.</td>
+</tr>
+<tr class="odd">
+<td><code>non-numeric argument to binary operator</code></td>
+<td>Math (<code>+ - * /</code>) on something that isn’t a number, like <code>c(1, "two", 3) + 1</code>. Check <code>class()</code>.</td>
+</tr>
+<tr class="even">
+<td><code>subscript out of bounds</code></td>
+<td>You asked for a position that isn’t there, like <code>x[[4]]</code> when <code>x</code> has 3 values. Careful: <code>x[4]</code> gives no error, just a quiet <code>NA</code>.</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="where-to-get-unstuck" class="slide level2">
 <h2>Where to get unstuck</h2>
@@ -1402,11 +1541,11 @@ sample  set.seed  replicate</code></pre>
 <p>Your script from today is the best reference you now own. It works, you typed it, and you know what every line does.</p>
 </div>
 
-</section></section>
+</section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
-
+<p>Yale Library | StatLab</p>
 </div>
 </div></div>
 
@@ -1431,7 +1570,7 @@ sample  set.seed  replicate</code></pre>
       // Full list of configuration options available at:
       // https://revealjs.com/config/
       Reveal.initialize({
-'controlsAuto': true,
+'controlsAuto': false,
 'previewLinksAuto': true,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
@@ -1586,7 +1725,7 @@ sample  set.seed  replicate</code></pre>
         // specified using percentage units.
         width: 1050,
 
-        height: 900,
+        height: 700,
 
         // Factor of the display size that should remain empty around the content
         margin: 0.1,
@@ -1617,6 +1756,50 @@ sample  set.seed  replicate</code></pre>
           RevealZoom
         ]
       });
+    </script>
+    <!--
+      Running header, top-right of every slide except the title slide.
+      Mirrors the beamer headline, which prints the deck title small and muted
+      and suppresses it on frame 1.
+
+      Injected via `include-after-body`. Styling lives in custom.scss
+      (.running-title); the title-slide suppression is the :has() rule there,
+      with the JS below as a fallback for browsers without :has().
+    -->
+    <div class="running-title" id="running-title"></div>
+
+    <script>
+      (function () {
+        var el = document.getElementById("running-title");
+        if (!el) return;
+
+        // Pull the deck title from <title> so this file never needs editing.
+        var t = (document.title || "").trim();
+        el.textContent = t;
+
+        function sync() {
+          var slides = document.querySelectorAll(".reveal .slides > section");
+          if (!slides.length) return;
+
+          // Hide while the first slide (the title slide) is showing.
+          el.style.opacity = slides[0].classList.contains("present") ? "0" : "1";
+
+          // Flag dark-background slides so the footer and running title can
+          // invert -- otherwise the white footer band and the muted running
+          // title sit unreadably on the dark ground.
+          var cur = document.querySelector(".reveal .slides > section.present");
+          var dark = !!(cur && cur.hasAttribute("data-background-color"));
+          document.body.classList.toggle("on-dark-slide", dark);
+        }
+
+        if (window.Reveal && Reveal.on) {
+          Reveal.on("ready", sync);
+          Reveal.on("slidechanged", sync);
+        } else {
+          document.addEventListener("DOMContentLoaded", sync);
+          setTimeout(sync, 400);
+        }
+      })();
     </script>
     
     <script>

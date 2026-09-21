@@ -1,0 +1,77 @@
+<!--
+  Title slide partial, matching the StatLab beamer title page:
+    title    : large, bold, statprimary, left-aligned
+    subtitle : statsecondary
+    author, affiliation, date : statprimary at 70%
+  All left-aligned, stacked, upper-middle of the slide. Light background.
+  Filled from the qmd YAML (title, subtitle, author, and term or date).
+  Use `term: "Fall 2026"` for a semester: Quarto parses `date` values and
+  would turn "Fall 2026" into 2026-01-01.
+-->
+
+<section id="$idprefix$title-slide" class="title-slide">
+  <h1 class="title">$title$</h1>
+$if(subtitle)$
+  <p class="subtitle">$subtitle$</p>
+$endif$
+
+  <div class="title-meta">
+$for(by-author)$
+    <p class="author">$by-author.name.literal$</p>
+$for(by-author.affiliations)$
+    <p class="affiliation">
+      $if(it.url)$<a href="$it.url$">$endif$$it.name$$if(it.url)$</a>$endif$
+    </p>
+$endfor$
+$endfor$
+$if(term)$
+    <p class="date">$term$</p>
+$elseif(date)$
+    <p class="date">$date$</p>
+$endif$
+  </div>
+</section>
+
+<style>
+.reveal .slides section.title-slide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+  height: 100%;
+  padding-left: 2.1rem;
+  padding-right: 2.1rem;
+}
+
+.reveal .slides section.title-slide h1.title {
+  background: transparent;
+  color: #2c3e50;
+  font-weight: 700;
+  font-size: 1.95rem;
+  line-height: 1.15;
+  margin: 0 0 0.35rem;
+  padding: 0;
+  text-align: left;
+}
+.reveal .slides section.title-slide .subtitle {
+  color: #2980b9;
+  font-weight: 700;
+  font-size: 1.02rem;
+  line-height: 1.3;
+  margin: 0 0 1.6rem;
+  text-align: left;
+}
+.reveal .slides section.title-slide .title-meta p {
+  margin: 0 0 0.28rem;
+  font-size: 0.76rem;
+  line-height: 1.4;
+  color: rgba(44, 62, 80, 0.7);
+  text-align: left;
+}
+.reveal .slides section.title-slide .title-meta a {
+  color: rgba(44, 62, 80, 0.7);
+  border-bottom: 1px solid rgba(44, 62, 80, 0.25);
+  text-decoration: none;
+}
+</style>
