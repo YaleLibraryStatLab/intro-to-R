@@ -916,7 +916,7 @@ mean in group 0 mean in group 1
 </section>
 <section id="check-step-6-what-does-p-0.13-actually-mean" class="slide level2">
 <h2>CHECK · Step 6: what does p = 0.13 actually mean?</h2>
-<p>Most of us walk in carrying this one:</p>
+<p>One of the most common mistakes is reading the p-value as follows:</p>
 <blockquote>
 <p><del>“p is the probability the result is due to chance.”</del></p>
 </blockquote>
@@ -950,7 +950,7 @@ mean in group 0 mean in group 1
 <span id="cb35-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(states<span class="sc">$</span>crude_rate_20_64[shuffled <span class="sc">==</span> <span class="dv">1</span>]) <span class="sc">-</span></span>
 <span id="cb35-4"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(states<span class="sc">$</span>crude_rate_20_64[shuffled <span class="sc">==</span> <span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -23.08951</code></pre>
+<pre><code>[1] 28.59187</code></pre>
 </div>
 </div>
 <p>Run it again:</p>
@@ -959,7 +959,7 @@ mean in group 0 mean in group 1
 <span id="cb37-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(states<span class="sc">$</span>crude_rate_20_64[shuffled <span class="sc">==</span> <span class="dv">1</span>]) <span class="sc">-</span></span>
 <span id="cb37-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(states<span class="sc">$</span>crude_rate_20_64[shuffled <span class="sc">==</span> <span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -7.175926</code></pre>
+<pre><code>[1] 21.44707</code></pre>
 </div>
 </div>
 <p>That bouncing <strong>is</strong> sampling variation. You are looking straight at it.</p>

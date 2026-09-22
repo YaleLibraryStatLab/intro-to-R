@@ -752,7 +752,7 @@ round the subtraction went before assuming you broke something.
 
 ## CHECK · Step 6: what does p = 0.13 actually mean?
 
-Most of us walk in carrying this one:
+One of the most common mistakes is reading the p-value as follows:
 
 > ~~"p is the probability the result is due to chance."~~
 
